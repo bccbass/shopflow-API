@@ -1,14 +1,24 @@
 import express from "express";
-// import cors from 'cors'
+import cors from 'cors'
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
 dotenv.config();
 
+
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Connect to the database
+// await dbConnect().catch(console.dir);
+mongoose.connect(process.env.ATLAS_DB_URL)
+  .then(m => console.log(m.connection.readyState == 1 ? 'Mongoose connected!' : 'Mongoose failed to connect.'))
+  // .catch(err => console.log(err))
+
+
+
 
 app.get("/hello", (req, res) => {
   res.json({ success: "Hello" });
