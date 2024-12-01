@@ -53,6 +53,9 @@ router
     res.json(res.note)
   })
   .patch(getNote, async (req, res) => {
+     if (req.body.title != null) {
+        res.note.title = req.body.title
+     }
      if (req.body.body != null) {
         res.note.body = req.body.body
      }

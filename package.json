@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "seedleads": "node db/seedLeads.js"
+    "seedleads": "node db/seedLeads.js",
+    "seednotes": "node db/seedNotes.js"
   },
   "keywords": [],
   "author": "",
