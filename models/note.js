@@ -1,10 +1,12 @@
+/** @format */
+
 import mongoose from "mongoose";
 
 const NoteSchema = new mongoose.Schema({
-    dateCreated: {required: true, type:Date, default: Date.now},
-    body: {required: true, type: String},
-    createdBy: String,
-    due: {type: Date}
+	dateCreated: { required: true, type: Date, default: Date.now },
+	body: { required: true, type: String },
+	createdBy: String,
+	due: { type: Date },
 });
 
-export default mongoose.model('Note', NoteSchema);
+export default mongoose.model("Note", NoteSchema);
