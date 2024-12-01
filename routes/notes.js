@@ -52,9 +52,19 @@ router
     // }
     res.json(res.note)
   })
-  .patch((req, res) => {
-    res.send({ success: `Update note ID ${req.params.id}` });
-  })
+  .patch(getNote, async (req, res) => {
+     if (req.body.body != null) {
+        res.note.body = req.body.body
+     }
+     if (req.body.due != null) {
+        res.note.due = res.body.due
+     }
+     try {
+        const updatedNote = await res.note.save();
+        res.json(updatedNote); 
+     } catch (err) {res.status(500).json({ message: err.message})
+    }
+})
   .delete(getNote, async (req, res) => {
     try {
         await res.note.deleteOne();
