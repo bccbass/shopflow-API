@@ -44,10 +44,9 @@ router.post("/", async (req, res) => {
     //     followup: [],
     //   },
     // });
-    const lead = new Lead({...req.body});
+    const lead = new Lead({ ...req.body });
     await lead.save();
     res.status(200).json(lead);
-
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -62,8 +61,13 @@ router
   .put((req, res) => {
     res.send({ success: `Update ID ${req.params.id}` });
   })
-  .delete((req, res) => {
-    res.send({ success: `Delete ID ${req.params.id}` });
+  .delete(getLead, async (req, res) => {
+    try {
+      await res.lead.deleteOne();
+      res.json({ message: `Deleted lead ${req.params.id}` });
+    } catch (err) {
+      res.status(500).json({message: err.message})
+    }
   });
 
 export default router;

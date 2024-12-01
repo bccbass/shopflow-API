@@ -68,7 +68,7 @@ router
   .delete(getNote, async (req, res) => {
     try {
         await res.note.deleteOne();
-        res.send({ message: `Deleted note ${req.params.id}` });
+        res.json({ message: `Deleted note ${req.params.id}` });
     } catch (err) {
         res.status(500).json({message: err.message})
     }
