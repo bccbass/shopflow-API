@@ -1,4 +1,4 @@
-import express from "express";
+ import express from "express";
 import Lead from "../models/lead.js";
 
 const router = express.Router();
@@ -23,6 +23,17 @@ router.get("/", async (req, res) => {
   try {
     const leads = await Lead.find();
     res.json(leads);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+router.get("/analytics", async (req, res) => {
+  try {
+    const total = await Lead.countDocuments();
+    const bookedTrial = await Lead.countDocuments({bookedTrial: true});
+    const enrolled = await Lead.countDocuments({enrolled: true});
+    const analytics = {total, bookedTrial, enrolled}
+    res.json(analytics);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

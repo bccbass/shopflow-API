@@ -1,5 +1,5 @@
 import express from "express";
-import Note from "../models/note.js";
+import Note from "../models/Note.js";
 
 const router = express.Router();
 
@@ -22,6 +22,15 @@ const getNote = async (req, res, next) => {
 router.get("/", async (req, res) => {
   try {
     const notes = await Note.find();
+    res.json(notes);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+// Find and countDocuments examples. Use param queries to implement?
+router.get("/count", async (req, res) => {
+  try {
+    const notes = await  Note.countDocuments({createdBy: 'Big Seller'})
     res.json(notes);
   } catch (err) {
     res.status(500).json({ message: err.message });

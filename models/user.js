@@ -5,7 +5,7 @@ const UserSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
   //role will be for admin/superuser
   role: { type: String, required: true },
-  email: { type: String, required: true },
+  email: { type: String, required: true, lowercase: true },
   // This needs to be encrypted:
   //password: String
 });
