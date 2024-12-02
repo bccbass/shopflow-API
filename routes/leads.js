@@ -27,6 +27,10 @@ router.get("/", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+
+// Add in time info (total length from first contact to trial to enrollment)
+// Add in Group class percent
+// Add in Average age/number of adults
 router.get("/analytics", async (req, res) => {
   try {
     const total = await Lead.countDocuments();
