@@ -1,5 +1,6 @@
 import express from "express";
 import Archive from "../models/Archive.js";
+import Lead from "../models/lead.js";
 
 const router = express.Router();
 
@@ -8,7 +9,7 @@ const getArchive = async (req, res, next) => {
   let archive;
   try {
     archive = await Archive.findById(req.params.id);
-    if (lead == null) {
+    if (archive == null) {
       return res.status(404).json({ message: "Archived post not found" });
     }
   } catch (err) {
@@ -27,14 +28,23 @@ router.get("/", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-router.post("/", (req, res) => {
-  res.send({ success: "create new archive" });
+// Route to find archive, send to send back to leads as active doc in collection and from archives collection
+router.delete("/reactivate/:id", getArchive, async (req, res) => {
+  try {
+    const clonedArchive = { ...res.archive.toObject() };
+    const lead = await Lead.create(clonedArchive);
+    await lead.save();
+    await res.archive.deleteOne();
+    res.json({ lead });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 // Define ID Routes using router.route() - this chains all operations for cleaner/concise code
 router
   .route("/:id")
-  .get((req, res) => {
-    res.send({ success: `archive ID ${req.params.id}` });
+  .get(getArchive, (req, res) => {
+    res.json(res.archive);
   })
   .delete((req, res) => {
     res.send({ success: `Delete archive ID ${req.params.id}` });
