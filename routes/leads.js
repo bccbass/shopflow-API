@@ -1,5 +1,7 @@
- import express from "express";
+import express from "express";
 import Lead from "../models/lead.js";
+import Archive from "../models/Archive.js";
+import lead from "../models/lead.js";
 
 const router = express.Router();
 
@@ -34,10 +36,23 @@ router.get("/", async (req, res) => {
 router.get("/analytics", async (req, res) => {
   try {
     const total = await Lead.countDocuments();
-    const bookedTrial = await Lead.countDocuments({bookedTrial: true});
-    const enrolled = await Lead.countDocuments({enrolled: true});
-    const analytics = {total, bookedTrial, enrolled}
+    const bookedTrial = await Lead.countDocuments({ bookedTrial: true });
+    const enrolled = await Lead.countDocuments({ enrolled: true });
+    const analytics = { total, bookedTrial, enrolled };
     res.json(analytics);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Route to find post, send to Archive collection and delete original
+router.delete("/archive/:id", getLead, async (req, res) => {
+  try {
+    const clonedLead = { ...res.lead.toObject() };
+    const archive = await Archive.create(clonedLead);
+    await archive.save();
+    await res.lead.deleteOne();
+    res.json({ archive });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -81,7 +96,7 @@ router
       await res.lead.deleteOne();
       res.json({ message: `Deleted lead ${req.params.id}` });
     } catch (err) {
-      res.status(500).json({message: err.message})
+      res.status(500).json({ message: err.message });
     }
   });
 

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Note from "../models/note.js";
+import Note from "../models/Note.js";
 import notes from "./seedNotesData.js";
 import { dbConnect, dbClose } from "./connection.js";
 

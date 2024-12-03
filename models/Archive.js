@@ -12,11 +12,10 @@ const followUpSchema = mongoose.Schema({
   notes: String,
 });
 
-const leadSchema = new mongoose.Schema({
+const archiveSchema = new mongoose.Schema({
   dateCreated: {
     required: true,
     type: Date,
-    default: Date.now,
     immutable: true,
   },
   nextContactDate: Date,
@@ -47,4 +46,4 @@ const leadSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("Lead", leadSchema);
+export default mongoose.model("Archive", archiveSchema);
