@@ -53,12 +53,6 @@ router.post("/", async (req, res) => {
 router
   .route("/:id")
   .get(getNote, (req, res) => {
-    // try {
-    //   const notes = await Note.findById(req.params.id);
-    //   res.json(notes);
-    // } catch (err) {
-    //   res.status(500).json({ message: err.message });
-    // }
     res.json(res.note)
   })
   .patch(getNote, async (req, res) => {

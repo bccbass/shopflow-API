@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-
+import Archive from "./Archive.js";
 const followUpSchema = mongoose.Schema({
   dateCreated: {
     required: true,
     type: Date,
-    default: () => Date.now,
+    default: Date.now,
     immutable: true,
   },
   admin: String,
@@ -46,5 +46,7 @@ const leadSchema = new mongoose.Schema({
     followUp: [followUpSchema],
   },
 });
+
+
 
 export default mongoose.model("Lead", leadSchema);

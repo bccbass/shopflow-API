@@ -9,7 +9,7 @@ const router = express.Router();
 const getLead = async (req, res, next) => {
   let lead;
   try {
-    lead = await Lead.findById(req.params.id);
+    lead = await Lead.findById(req.params.id)
     if (lead == null) {
       return res.status(404).json({ message: "Cannot find lead" });
     }
