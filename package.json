@@ -11,7 +11,8 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "seedleads": "node db/seedLeads.js",
-    "seednotes": "node db/seedNotes.js"
+    "seednotes": "node db/seedNotes.js",
+    "seedteachers": "node db/seedTeachers.js"
   },
   "keywords": [],
   "author": "",

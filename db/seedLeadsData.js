@@ -5,8 +5,27 @@ const leads = [
     nextContactDate: 7 / 12 / 24,
     leadSource: "walk-in",
     student: {
-      firstName: "Melinda",
-      lastName: "Spates",
+      firstName: "Ima Brand",
+      lastName: "New Lead",
+      instrument: "guitar",
+      groupClass: "",
+    },
+    guardian: {
+      firstName: "Constanzia",
+      lastName: "Villanueva",
+    },
+    contact: { phone: "0426123123", email: "georgia@email.com" },
+    followUp: [
+    ],
+    trialLesson: {
+    },
+  },
+  {
+    nextContactDate: 7 / 12 / 24,
+    leadSource: "walk-in",
+    student: {
+      firstName: "Trial Lesson",
+      lastName: "Is Booked",
       instrument: "guitar",
       groupClass: "",
     },
@@ -15,6 +34,7 @@ const leads = [
       lastName: "Alvarez",
     },
     contact: { phone: "0426123123", email: "georgia@email.com" },
+    bookedTrial: true,
     followUp: [
       {
         admin: "AB",
@@ -34,21 +54,6 @@ const leads = [
     ],
     trialLesson: {
       followUp: [
-        {
-          admin: "AB",
-          method: { vm: true },
-          notes: "lorem ipsum dolor sit amet, consectetur",
-        },
-        {
-          admin: "BC",
-          method: { call: true },
-          notes: "lorem ipsum dolor sit amet, consectetur",
-        },
-        {
-          admin: "CD",
-          method: { email: true },
-          notes: "lorem ipsum dolor sit amet, consectetur",
-        },
       ],
     },
   },
@@ -56,8 +61,8 @@ const leads = [
     nextContactDate: 7 / 12 / 2024,
     leadSource: "web email",
     student: {
-      firstName: "Jerry",
-      lastName: "Springer",
+      firstName: "Fully Commited",
+      lastName: "To Enrolling",
       instrument: "guitar",
       groupClass: "",
     },
@@ -66,6 +71,8 @@ const leads = [
       lastName: "Springer",
     },
     contact: { phone: "0421456456", email: "bigjerz@email.com" },
+    bookedTrial: true,
+    enrolled: true,
     followUp: [
       {
         admin: "AB",

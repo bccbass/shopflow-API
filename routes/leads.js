@@ -45,14 +45,14 @@ router.get("/analytics", async (req, res) => {
   }
 });
 
-// Route to find post, send to Archive collection and delete original
+// Route to find lead, send to Archive collection and delete original
 router.delete("/archive/:id", getLead, async (req, res) => {
   try {
     const clonedLead = { ...res.lead.toObject() };
     const archive = await Archive.create(clonedLead);
     await archive.save();
     await res.lead.deleteOne();
-    res.json({ archive });
+    res.json(archive);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

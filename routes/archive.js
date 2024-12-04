@@ -28,14 +28,14 @@ router.get("/", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-// Route to find archive, send to send back to leads as active doc in collection and from archives collection
+// Route to find archive, send back to leads as active doc in collection and delete from archives collection
 router.delete("/reactivate/:id", getArchive, async (req, res) => {
   try {
     const clonedArchive = { ...res.archive.toObject() };
     const lead = await Lead.create(clonedArchive);
     await lead.save();
     await res.archive.deleteOne();
-    res.json({ lead });
+    res.json( lead );
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

@@ -1,16 +1,7 @@
 import mongoose from "mongoose";
-import Archive from "./Archive.js";
-const followUpSchema = mongoose.Schema({
-  dateCreated: {
-    required: true,
-    type: Date,
-    default: Date.now,
-    immutable: true,
-  },
-  admin: String,
-  method: { call: Boolean, text: Boolean, voicemail: Boolean },
-  notes: String,
-});
+// import Archive from "./Archive.js";
+import followUpSchema from "./FollowUp.js";
+
 
 const leadSchema = new mongoose.Schema({
   dateCreated: {
@@ -21,8 +12,8 @@ const leadSchema = new mongoose.Schema({
   },
   nextContactDate: Date,
   leadSource: String,
-  bookedTrial: Boolean,
-  enrolled: Boolean,
+  bookedTrial: {type: Boolean, default: false},
+  enrolled: {type: Boolean, default: false},
   student: {
     firstName: String,
     lastName: String,
