@@ -1,10 +1,11 @@
-const leads = [
+const archive = [
   {
+    dateCreated: new Date(),
     nextContactDate: 7 / 12 / 24,
     leadSource: "walk-in",
     student: {
-      firstName: "Ima Brand",
-      lastName: "New Lead",
+      firstName: "Ima Old",
+      lastName: "Lead",
       instrument: "guitar",
       groupClass: "",
     },
@@ -13,17 +14,16 @@ const leads = [
       lastName: "Villanueva",
     },
     contact: { phone: "0426123123", email: "georgia@email.com" },
-    followUp: [
-    ],
-    trialLesson: {
-    },
+    followUp: [],
+    trialLesson: {},
   },
   {
+    dateCreated: new Date(),
     nextContactDate: 7 / 12 / 24,
     leadSource: "walk-in",
     student: {
-      firstName: "Trial Lesson",
-      lastName: "Is Booked",
+      firstName: "Johnny Archive",
+      lastName: "Trial",
       instrument: "guitar",
       groupClass: "",
     },
@@ -51,16 +51,17 @@ const leads = [
       },
     ],
     trialLesson: {
-      followUp: [
-      ],
+      followUp: [],
     },
   },
   {
+    dateCreated: new Date(),
+
     nextContactDate: 7 / 12 / 2024,
     leadSource: "web email",
     student: {
-      firstName: "Fully Commited",
-      lastName: "To Enrolling",
+      firstName: "Sally Archive",
+      lastName: "I Enrolled",
       instrument: "guitar",
       groupClass: "",
     },
@@ -110,4 +111,4 @@ const leads = [
   },
 ];
 
-export default leads;
+export default archive;
