@@ -1,7 +1,6 @@
 import express from "express";
-import Lead from "../models/lead.js";
+import Lead from "../models/Lead.js";
 import Archive from "../models/Archive.js";
-import lead from "../models/lead.js";
 
 const router = express.Router();
 
