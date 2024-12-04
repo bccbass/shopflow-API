@@ -33,7 +33,7 @@ const leadSchema = new mongoose.Schema({
     location: String,
     instrument: String,
     groupClass: String,
-    instructor: String,
+    teacher: String,
     followUp: [followUpSchema],
   },
 });

@@ -12,6 +12,7 @@
     "dev": "nodemon index.js",
     "seedleads": "node db/seedLeads.js",
     "seednotes": "node db/seedNotes.js",
+    "seedusers": "node db/seedUsers.js",
     "seedteachers": "node db/seedTeachers.js",
     "seedarchive": "node db/seedArchive.js"
   },
