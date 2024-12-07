@@ -11,6 +11,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors({ origin: process.env.SHOPFLOW_API }));
 
 // Connect to the database
 await dbConnect();
