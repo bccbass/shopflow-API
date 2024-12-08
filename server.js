@@ -11,7 +11,9 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: process.env.SHOPFLOW_API }));
+app.use(cors());
+// When ready add client url as config to only allow access form that url:
+// app.use(cors({ origin: process.env.SHOPFLOW_CLIENT_URL }));
 
 // Connect to the database
 await dbConnect();
