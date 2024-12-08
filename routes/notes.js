@@ -39,6 +39,7 @@ router.get("/count", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const note = new Note({
+      title: req.body.body,
       body: req.body.body,
       createdBy: req.body.createdBy,
       due: req.body.due,
