@@ -64,7 +64,7 @@ router
         res.note.body = req.body.body
      }
      if (req.body.due != null) {
-        res.note.due = res.body.due
+        res.note.due = req.body.due
      }
      try {
         const updatedNote = await res.note.save();

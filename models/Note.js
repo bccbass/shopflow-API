@@ -5,7 +5,7 @@ const NoteSchema = new mongoose.Schema({
   title: String,
   body: {type: String },
   createdBy: String,
-  due: { type: Date },
+  due: { type: Date},
 });
 
 export default mongoose.model("Note", NoteSchema);
