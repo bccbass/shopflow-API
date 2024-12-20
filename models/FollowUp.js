@@ -8,7 +8,7 @@ const followUpSchema = mongoose.Schema({
       immutable: true,
     },
     admin: String,
-    method: { call: Boolean, text: Boolean, voicemail: Boolean },
+    method: { chat: Boolean, text: Boolean, voicemail: Boolean, email: Boolean },
     notes: String,
   });
 

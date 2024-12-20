@@ -6,7 +6,8 @@ const leads = [
 			firstName: "Ima Brand",
 			lastName: "New Lead",
 			instrument: "guitar",
-			groupClass: "",
+			groupClass: "Guitar Class",
+			age: 9
 		},
 		guardian: {
 			firstName: "Constanzia",
@@ -19,11 +20,13 @@ const leads = [
 	{
 		nextContactDate: 7 / 12 / 24,
 		leadSource: "walk-in",
+		notes: 'lorem ipsum dolor sit amet, consectetur lorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consectetur',
 		student: {
 			firstName: "Trial Lesson",
 			lastName: "Is Booked",
 			instrument: "guitar",
-			groupClass: "",
+			groupClass: "Guitar Class",
+			age: 9
 		},
 		guardian: {
 			firstName: "Georgia",
@@ -34,12 +37,12 @@ const leads = [
 		followUp: [
 			{
 				admin: "AB",
-				method: { vm: true },
+				method: { voicemail: true },
 				notes: "lorem ipsum dolor sit amet, consectetur",
 			},
 			{
 				admin: "BC",
-				method: { call: true },
+				method: { chat: true },
 				notes: "lorem ipsum dolor sit amet, consectetur",
 			},
 			{
@@ -60,11 +63,14 @@ const leads = [
 	{
 		nextContactDate: 7 / 12 / 2024,
 		leadSource: "web email",
+		notes: 'lorem ipsum dolor sit amet, consectetur lorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consectetur',
+
 		student: {
 			firstName: "Fully Commited",
 			lastName: "To Enrolling",
 			instrument: "guitar",
-			groupClass: "",
+			groupClass: "Guitar Class",
+			age: 9
 		},
 		guardian: {
 			firstName: "Barry",
@@ -76,12 +82,12 @@ const leads = [
 		followUp: [
 			{
 				admin: "AB",
-				method: { vm: true },
+				method: { voicemail: true },
 				notes: "lorem ipsum dolor sit amet, consectetur",
 			},
 			{
 				admin: "BC",
-				method: { call: true },
+				method: { chat: true },
 				notes: "lorem ipsum dolor sit amet, consectetur",
 			},
 			{
@@ -89,6 +95,11 @@ const leads = [
 				method: { email: true },
 				notes: "lorem ipsum dolor sit amet, consectetur",
 			},
+			{
+				admin: "CD",
+				method: { text: true },
+				notes: "lorem ipsum dolor sit amet, consectetur",
+			}
 		],
 		trialLesson: {
 			date: 12 / 1 / 24,
@@ -99,12 +110,12 @@ const leads = [
 			followUp: [
 				{
 					admin: "AB",
-					method: { vm: true },
+					method: { voicemail: true },
 					notes: "lorem ipsum dolor sit amet, consectetur",
 				},
 				{
 					admin: "BC",
-					method: { call: true },
+					method: { chat: true },
 					notes: "lorem ipsum dolor sit amet, consectetur",
 				},
 				{
@@ -112,6 +123,11 @@ const leads = [
 					method: { email: true },
 					notes: "lorem ipsum dolor sit amet, consectetur",
 				},
+				{
+					admin: "CD",
+					method: { text: true },
+					notes: "lorem ipsum dolor sit amet, consectetur",
+				}
 			],
 		},
 	},

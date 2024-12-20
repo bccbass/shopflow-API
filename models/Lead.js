@@ -10,6 +10,7 @@ const leadSchema = new mongoose.Schema({
     default: Date.now,
     immutable: true,
   },
+  notes: String,
   nextContactDate: Date,
   leadSource: String,
   bookedTrial: {type: Boolean, default: false},
