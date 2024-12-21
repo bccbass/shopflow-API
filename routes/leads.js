@@ -1,5 +1,6 @@
 import express from "express";
 import Lead from "../models/Lead.js";
+import Note from "../models/Note.js";
 import Archive from "../models/Archive.js";
 
 const router = express.Router();
@@ -39,6 +40,18 @@ router.get("/analytics", async (req, res) => {
     const enrolled = await Lead.countDocuments({ enrolled: true });
     const analytics = { total, bookedTrial, enrolled };
     res.json(analytics);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+router.get("/due", async (req, res) => {
+  const now = Date.now();
+  try {
+    const enquiries = await Lead.countDocuments({bookedTrial: false}).where('nextContactDate').lte(now);
+    const trials = await Lead.countDocuments({ bookedTrial: true }).where('nextContactDate').lte(now);
+    const notes = await Note.countDocuments().where('due').lte(now);
+    const due = {enquiries, trials, notes};
+    res.json(due);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
