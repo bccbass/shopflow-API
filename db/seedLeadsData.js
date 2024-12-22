@@ -1,6 +1,8 @@
+import { addDays } from "../lib/helperFuncs.js";
+
 const leads = [
 	{
-		nextContactDate: 7 / 12 / 24,
+		nextContactDate: addDays(2),
 		leadSource: "walk-in",
 		student: {
 			firstName: "Ima Brand",
@@ -18,7 +20,7 @@ const leads = [
 		trialLesson: {},
 	},
 	{
-		nextContactDate: 7 / 12 / 24,
+		nextContactDate: addDays(2),
 		leadSource: "walk-in",
 		notes: 'lorem ipsum dolor sit amet, consectetur lorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consectetur',
 		student: {
@@ -52,7 +54,7 @@ const leads = [
 			},
 		],
 		trialLesson: {
-			date: 12 / 1 / 24,
+			date: addDays(2),
 			time: "4pm",
 			location: "shop",
 			instrument: "guitar",
@@ -61,7 +63,7 @@ const leads = [
 		},
 	},
 	{
-		nextContactDate: 7 / 12 / 2024,
+		nextContactDate: addDays(2),
 		leadSource: "web email",
 		notes: 'lorem ipsum dolor sit amet, consectetur lorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consectetur',
 
@@ -102,7 +104,7 @@ const leads = [
 			}
 		],
 		trialLesson: {
-			date: 12 / 1 / 24,
+			date: addDays(2),
 			time: "2pm",
 			location: "studio",
 			instrument: "drums",

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 // import Archive from "./Archive.js";
 import followUpSchema from "./FollowUp.js";
-
+import { addDays } from "../lib/helperFuncs.js";
 
 const leadSchema = new mongoose.Schema({
   dateCreated: {
@@ -11,7 +11,7 @@ const leadSchema = new mongoose.Schema({
     immutable: true,
   },
   notes: String,
-  nextContactDate: Date,
+  nextContactDate: {type: Date, default: addDays(2)},
   leadSource: String,
   bookedTrial: {type: Boolean, default: false},
   enrolled: {type: Boolean, default: false},
