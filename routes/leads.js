@@ -100,7 +100,7 @@ router
   .get(getLead, (req, res) => {
     res.json(res.lead);
   })
-  .put((req, res) => {
+  .patch((req, res) => {
     res.send({ success: `Update ID ${req.params.id}` });
   })
   .delete(getLead, async (req, res) => {
