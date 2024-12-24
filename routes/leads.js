@@ -94,6 +94,21 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.patch('/updatetrial/:id', getLead, async (req, res) => {
+try {
+      if (req.body.bookedTrial != null){
+        res.lead.bookedTrial = req.body.bookedTrial
+      }
+      if (req.body.trialLesson != null) {
+        res.lead.trialLesson = req.body.trialLesson;
+      }
+      const updatedLeadTrial = await res.lead.save();
+      res.json(updatedLeadTrial)
+    } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+})
+
 // Define ID Routes using router.route() - this chains all operations for cleaner/concise code
 router
   .route("/:id")
@@ -101,22 +116,22 @@ router
     res.json(res.lead);
   })
   .patch(getLead, async (req, res) => {
-    if (req.query.updatetrial === true){
-      if (req.body.bookedTrial != null){
-        res.lead.bookedTrial = req.body.bookedTrial
-      }
-      if (req.body.trialLesson != null) {
-				res.lead.trialLesson = req.body.trialLesson;
-			}
-      try {
-        const updatedLeadTrial = await res.lead.save();
-        res.json(updatedLeadTrial)
-      } catch (err) {
-      res.status(500).json({ message: err.message });
-    }
+    // if (req.query.updatetrial == true){
+  
+    //   try {
+    //     if (req.body.bookedTrial != null){
+    //       res.lead.bookedTrial = req.body.bookedTrial
+    //     }
+    //     if (req.body.trialLesson != null) {
+    //       res.lead.trialLesson = req.body.trialLesson;
+    //     }
+    //     const updatedLeadTrial = await res.lead.save();
+    //     res.json(updatedLeadTrial)
+    //   } catch (err) {
+    //   res.status(500).json({ message: err.message });
+    // }
 
-    }
-    res.send({ success: `Update ID ${req.params.id}` });
+    // }
   })
   .delete(getLead, async (req, res) => {
     try {

@@ -17,7 +17,16 @@ const leads = [
 		},
 		contact: { phone: "0426123123", email: "georgia@email.com" },
 		followUp: [],
-		trialLesson: {},
+		trialLesson: {
+			date: '',
+			time: { hour: "", min: "", twelveHr: "" },
+			location: "",
+			instrument: "",
+			teacher: "",
+			followUp: [
+				
+			],
+		},
 	},
 	{
 		nextContactDate: addDays(2),
@@ -55,7 +64,7 @@ const leads = [
 		],
 		trialLesson: {
 			date: addDays(2),
-			time: "4pm",
+			time: { hour: "2", min: "00", twelveHr: "pm" },
 			location: "shop",
 			instrument: "guitar",
 			teacher: "Johnny Deepthoughts",
@@ -105,7 +114,7 @@ const leads = [
 		],
 		trialLesson: {
 			date: addDays(2),
-			time: "2pm",
+			time: { hour: "2", min: "00", twelveHr: "pm" },
 			location: "studio",
 			instrument: "drums",
 			teacher: "Jasmine Highnote",

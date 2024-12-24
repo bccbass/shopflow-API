@@ -33,7 +33,7 @@ const leadSchema = new mongoose.Schema({
 	followUp: [followUpSchema],
 	trialLesson: {
 		date: Date,
-		time: String,
+		time: {hour: String, min: String, twelveHr: String},
 		location: String,
 		instrument: String,
 		groupClass: String,
