@@ -100,7 +100,16 @@ router
   .get(getLead, (req, res) => {
     res.json(res.lead);
   })
-  .patch((req, res) => {
+  .patch(getLead, (req, res) => {
+    if (req.query.updatetrial === true){
+      if (req.body.bookedTrial != null){
+        res.lead.bookedTrial = req.body.bookedTrial
+      }
+      if (req.body.trialLesson != null) {
+				res.lead.trialLesson = req.body.trialLesson;
+			}
+
+    }
     res.send({ success: `Update ID ${req.params.id}` });
   })
   .delete(getLead, async (req, res) => {

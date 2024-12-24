@@ -39,14 +39,14 @@ router.get("/", async (req, res) => {
   }
 });
 // Find and countDocuments examples. Use param queries to implement?
-router.get("/count", async (req, res) => {
-  try {
-    const notes = await Note.countDocuments({ createdBy: "Big Seller" });
-    res.json(notes);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+// router.get("/count", async (req, res) => {
+//   try {
+//     const notes = await Note.countDocuments({ createdBy: "Big Seller" });
+//     res.json(notes);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// });
 router.post("/", async (req, res) => {
   try {
     const note = new Note({
