@@ -100,7 +100,7 @@ router
   .get(getLead, (req, res) => {
     res.json(res.lead);
   })
-  .patch(getLead, (req, res) => {
+  .patch(getLead, async (req, res) => {
     if (req.query.updatetrial === true){
       if (req.body.bookedTrial != null){
         res.lead.bookedTrial = req.body.bookedTrial
@@ -108,6 +108,12 @@ router
       if (req.body.trialLesson != null) {
 				res.lead.trialLesson = req.body.trialLesson;
 			}
+      try {
+        const updatedLeadTrial = await res.lead.save();
+        res.json(updatedLeadTrial)
+      } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
 
     }
     res.send({ success: `Update ID ${req.params.id}` });
