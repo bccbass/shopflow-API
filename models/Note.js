@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { addDays } from "../lib/helperFuncs.js";
 
 const NoteSchema = new mongoose.Schema({
 	dateCreated: {
@@ -11,6 +12,17 @@ const NoteSchema = new mongoose.Schema({
 	body: { type: String },
 	createdBy: String,
 	due: { type: Date },
-});
+},
+{
+    virtuals: {
+      overdue: {
+        get() {
+         return (new Date(this.due) <= new Date(Date.now()));
+        },
+      },
+    },
+  });
+
+  NoteSchema.set("toJSON", { getters: true, virtuals: true });
 
 export default mongoose.model("Note", NoteSchema);

@@ -45,7 +45,7 @@ router.get("/analytics", async (req, res) => {
   }
 });
 router.get("/due", async (req, res) => {
-  const now = Date.now();
+  const now = Date.now() 
   try {
     const enquiries = await Lead.countDocuments({bookedTrial: false}).where('nextContactDate').lte(now);
     const trials = await Lead.countDocuments({ bookedTrial: true }).where('nextContactDate').lte(now);
@@ -115,23 +115,16 @@ router
   .get(getLead, (req, res) => {
     res.json(res.lead);
   })
-  .patch(getLead, async (req, res) => {
-    // if (req.query.updatetrial == true){
+  .put(async (req, res) => {
   
-    //   try {
-    //     if (req.body.bookedTrial != null){
-    //       res.lead.bookedTrial = req.body.bookedTrial
-    //     }
-    //     if (req.body.trialLesson != null) {
-    //       res.lead.trialLesson = req.body.trialLesson;
-    //     }
-    //     const updatedLeadTrial = await res.lead.save();
-    //     res.json(updatedLeadTrial)
-    //   } catch (err) {
-    //   res.status(500).json({ message: err.message });
-    // }
+      try {
+        const id = req.params.id
+        const updatedLead = await findByIdandUpdate(id, {...req.body})
+        res.json(updatedLead)
+      } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
 
-    // }
   })
   .delete(getLead, async (req, res) => {
     try {
