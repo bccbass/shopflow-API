@@ -119,7 +119,7 @@ router
   
       try {
         const id = req.params.id
-        const updatedLead = await Lead.findByIdandUpdate(id, {...req.body})
+        const updatedLead = await Lead.findByIdAndUpdate(id, {...req.body})
         res.json(updatedLead)
       } catch (err) {
       res.status(500).json({ message: err.message });
