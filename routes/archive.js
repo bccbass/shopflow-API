@@ -1,4 +1,4 @@
-
+/** @format */
 
 import express from "express";
 import Archive from "../models/Archive.js";
@@ -48,8 +48,13 @@ router
 	.get(getArchive, (req, res) => {
 		res.json(res.archive);
 	})
-	.delete((req, res) => {
-		res.send({ success: `Delete archive ID ${req.params.id}` });
+	.delete(getArchive, async (req, res) => {
+		try {
+			await res.archive.deleteOne();
+			res.json({ message: `Deleted archive ${req.params.id}` });
+		} catch (err) {
+			res.status(500).json({ message: err.message });
+		}
 	});
 
 export default router;
