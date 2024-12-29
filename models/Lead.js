@@ -56,7 +56,8 @@ const leadSchema = new mongoose.Schema(
       },
       overdue: {
         get() {
-          return (new Date(this.nextContactDate) <= new Date(Date.now()));
+          if (new Date(this.nextContactDate) < new Date('2020-01-01')) {return false}
+          else return (new Date(this.nextContactDate) <= new Date(Date.now()));
         },
       },
       isMinor: {

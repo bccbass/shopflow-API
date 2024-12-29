@@ -108,6 +108,23 @@ try {
     res.status(500).json({ message: err.message });
   }
 })
+router.patch('/updatefollowup/:id', getLead, async (req, res) => {
+try {
+      if (req.body?.trialLesson?.followUp != null){
+        res.lead.trialLesson.followUp = req.body.trialLesson.followUp
+      }
+      else if (req.body.followUp != null) {
+        res.lead.followUp = req.body.followUp;
+      }
+      if (req.body.nextContactDate != null){
+        res.lead.nextContactDate = req.body.nextContactDate
+      }
+      const updatedLeadTrial = await res.lead.save();
+      res.json(updatedLeadTrial)
+    } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+})
 
 // Define ID Routes using router.route() - this chains all operations for cleaner/concise code
 router
@@ -119,9 +136,14 @@ router
   
       try {
         const id = req.params.id
-        const updatedLead = await Lead.findByIdAndUpdate(id, {...req.body})
-        res.json(updatedLead)
-      } catch (err) {
+        const updatedLeadData = req.body
+        if  (updatedLeadData) {
+        const updatedLead = await Lead.findByIdAndUpdate(id, updatedLeadData, {new: true, runValidators: true})
+        res.status(200).json(updatedLead)
+      }
+      else {res.json({error: "No update data provided"})}
+
+    } catch (err) {
       res.status(500).json({ message: err.message });
     }
 
