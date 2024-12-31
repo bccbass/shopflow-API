@@ -1,6 +1,8 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
+import { localDate } from "../lib/helperFuncs.js";
 
-const followUpSchema = mongoose.Schema({
+const followUpSchema = mongoose.Schema(
+  {
     dateCreated: {
       required: true,
       type: Date,
@@ -8,8 +10,25 @@ const followUpSchema = mongoose.Schema({
       immutable: true,
     },
     admin: String,
-    method: { chat: Boolean, text: Boolean, voicemail: Boolean, email: Boolean },
+    method: {
+      chat: Boolean,
+      text: Boolean,
+      voicemail: Boolean,
+      email: Boolean,
+    },
     notes: String,
-  });
+  },
+  {
+    virtuals: {
+      followUpInitDate: {
+        get() {
+          return localDate(this.dateCreated);
+        },
+      },
+    },
+  }
+);
 
-  export default followUpSchema
+followUpSchema.set("toJSON", { getters: true, virtuals: true });
+
+export default followUpSchema;

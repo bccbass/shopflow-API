@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 // import Archive from "./Archive.js";
 import followUpSchema from "./FollowUp.js";
-import { addDays } from "../lib/helperFuncs.js";
+import { addDays, localDate } from "../lib/helperFuncs.js";
 
 const leadSchema = new mongoose.Schema(
   {
@@ -56,8 +56,9 @@ const leadSchema = new mongoose.Schema(
       },
       overdue: {
         get() {
-          if (new Date(this.nextContactDate) < new Date('2020-01-01')) {return false}
-          else return (new Date(this.nextContactDate) <= new Date(Date.now()));
+          if (new Date(this.nextContactDate) < new Date("2020-01-01")) {
+            return false;
+          } else return new Date(this.nextContactDate) <= new Date(Date.now());
         },
       },
       isMinor: {
@@ -66,6 +67,26 @@ const leadSchema = new mongoose.Schema(
             this.guardian.lastName.length > 0 ||
             this.guardian.firstName.length > 0
           );
+        },
+      },
+      trialDate: {
+        get() {
+          return localDate(this.trialLesson.date);
+        },
+      },
+      contactDate: {
+        get() {
+          return localDate(this.nextContactDate);
+        },
+      },
+      createdDate: {
+        get() {
+          return localDate(this.dateCreated);
+        },
+      },
+      trialTime: {
+        get() {
+          return `${this.trialLesson?.time?.hour}:${this.trialLesson?.time?.min}${this?.trialLesson.time?.twelveHr}`;
         },
       },
     },

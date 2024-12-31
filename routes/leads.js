@@ -99,6 +99,9 @@ try {
       if (req.body.bookedTrial != null){
         res.lead.bookedTrial = req.body.bookedTrial
       }
+      if (req.body.enrolled != null){
+        res.lead.enrolled = req.body.enrolled
+      }
       if (req.body.trialLesson != null) {
         res.lead.trialLesson = req.body.trialLesson;
       }
