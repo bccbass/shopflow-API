@@ -6,6 +6,7 @@ const archiveSchema = new mongoose.Schema({
 		required: true,
 		type: Date,
 		immutable: true,
+		default: Date.now
 	},
 	nextContactDate: Date,
 	leadSource: String,

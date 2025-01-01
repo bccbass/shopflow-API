@@ -86,7 +86,7 @@ const leadSchema = new mongoose.Schema(
       },
       trialTime: {
         get() {
-          return `${this.trialLesson?.time?.hour}:${this.trialLesson?.time?.min}${this?.trialLesson.time?.twelveHr}`;
+          return `this.trialLesson?.time?.hour?.length == 0 ? '' : ${this.trialLesson?.time?.hour}:${this.trialLesson?.time?.min}${this?.trialLesson.time?.twelveHr}`;
         },
       },
     },

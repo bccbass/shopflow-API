@@ -1,147 +1,269 @@
 import { addDays } from "../lib/helperFuncs.js";
 
 const leads = [
-	{
-		nextContactDate: addDays(2),
-		leadSource: "walk-in",
-		student: {
-			firstName: "Ima Brand",
-			lastName: "New Lead",
-			instrument: "guitar",
-			groupClass: "Guitar Class",
-			age: 9
-		},
-		guardian: {
-			firstName: "Constanzia",
-			lastName: "Villanueva",
-		},
-		contact: { phone: "0426123123", email: "georgia@email.com" },
-		followUp: [],
-		trialLesson: {
-			date: '',
-			time: { hour: "", min: "", twelveHr: "" },
-			location: "",
-			instrument: "",
-			teacher: "",
-			followUp: [
-				
-			],
-		},
-	},
-	{
-		nextContactDate: addDays(2),
-		leadSource: "walk-in",
-		notes: 'lorem ipsum dolor sit amet, consectetur lorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consectetur',
-		student: {
-			firstName: "Trial Lesson",
-			lastName: "Is Booked",
-			instrument: "guitar",
-			groupClass: "Guitar Class",
-			age: 9
-		},
-		guardian: {
-			firstName: "Georgia",
-			lastName: "Alvarez",
-		},
-		contact: { phone: "0426123123", email: "georgia@email.com" },
-		bookedTrial: true,
-		followUp: [
-			{
-				admin: "AB",
-				method: { voicemail: true },
-				notes: "lorem ipsum dolor sit amet, consectetur",
-			},
-			{
-				admin: "BC",
-				method: { chat: true },
-				notes: "lorem ipsum dolor sit amet, consectetur",
-			},
-			{
-				admin: "CD",
-				method: { email: true },
-				notes: "lorem ipsum dolor sit amet, consectetur",
-			},
-		],
-		trialLesson: {
-			date: addDays(2),
-			time: { hour: "2", min: "00", twelveHr: "pm" },
-			location: "shop",
-			instrument: "guitar",
-			teacher: "Johnny Deepthoughts",
-			followUp: [],
-		},
-	},
-	{
-		nextContactDate: addDays(2),
-		leadSource: "web email",
-		notes: 'lorem ipsum dolor sit amet, consectetur lorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consecteturlorem ipsum dolor sit amet, consectetur',
-
-		student: {
-			firstName: "Fully Commited",
-			lastName: "To Enrolling",
-			instrument: "guitar",
-			groupClass: "Guitar Class",
-			age: 9
-		},
-		guardian: {
-			firstName: "Barry",
-			lastName: "Springer",
-		},
-		contact: { phone: "0421456456", email: "bigjerz@email.com" },
-		bookedTrial: true,
-		enrolled: true,
-		followUp: [
-			{
-				admin: "AB",
-				method: { voicemail: true },
-				notes: "lorem ipsum dolor sit amet, consectetur",
-			},
-			{
-				admin: "BC",
-				method: { chat: true },
-				notes: "lorem ipsum dolor sit amet, consectetur",
-			},
-			{
-				admin: "CD",
-				method: { email: true },
-				notes: "lorem ipsum dolor sit amet, consectetur",
-			},
-			{
-				admin: "CD",
-				method: { text: true },
-				notes: "lorem ipsum dolor sit amet, consectetur",
-			}
-		],
-		trialLesson: {
-			date: addDays(2),
-			time: { hour: "2", min: "00", twelveHr: "pm" },
-			location: "studio",
-			instrument: "drums",
-			teacher: "Jasmine Highnote",
-			followUp: [
-				{
-					admin: "AB",
-					method: { voicemail: true },
-					notes: "lorem ipsum dolor sit amet, consectetur",
-				},
-				{
-					admin: "BC",
-					method: { chat: true },
-					notes: "lorem ipsum dolor sit amet, consectetur",
-				},
-				{
-					admin: "CD",
-					method: { email: true },
-					notes: "lorem ipsum dolor sit amet, consectetur",
-				},
-				{
-					admin: "CD",
-					method: { text: true },
-					notes: "lorem ipsum dolor sit amet, consectetur",
-				}
-			],
-		},
-	},
+  {
+    nextContactDate: addDays(2),
+    leadSource: "Google Ads",
+    student: {
+      firstName: "Uma",
+      lastName: "Thurgood",
+      instrument: "guitar",
+      groupClass: "",
+      age: 9,
+    },
+    guardian: {
+      firstName: "Constanzia",
+      lastName: "Thurgood",
+    },
+    contact: { phone: "0426123123", email: "georgia@email.com" },
+    followUp: [],
+    trialLesson: {
+      date: "",
+      time: { hour: "", min: "", twelveHr: "" },
+      location: "",
+      instrument: "",
+      teacher: "",
+      followUp: [],
+    },
+  },
+  {
+    nextContactDate: addDays(2),
+    leadSource: "Email",
+    notes: "Interested in group classes.",
+    student: {
+      firstName: "Jerry",
+      lastName: "Rodriguez",
+      instrument: "Drums",
+      groupClass: "",
+      age: 45,
+    },
+    guardian: { firstName: "", lastName: "" },
+    contact: { phone: "0426123123", email: "jerry@email.com" },
+    bookedTrial: true,
+    followUp: [
+      {
+        admin: "AB",
+        method: { voicemail: true },
+        notes: "Left voicemail on availability.",
+      },
+    ],
+    trialLesson: {
+      date: addDays(3),
+      time: { hour: "3", min: "30", twelveHr: "pm" },
+      location: "Main studio",
+      instrument: "drums",
+      teacher: "Paul Simmons",
+      followUp: [],
+    },
+  },
+  {
+    nextContactDate: addDays(5),
+    leadSource: "Facebook",
+    student: {
+      firstName: "Sophie",
+      lastName: "Carter",
+      instrument: "Piano",
+      groupClass: "Beginner",
+      age: 12,
+    },
+    guardian: {
+      firstName: "Lucy",
+      lastName: "Carter",
+    },
+    contact: { phone: "0433123123", email: "sophie.carter@email.com" },
+    followUp: [],
+    trialLesson: {
+      date: addDays(7),
+      time: { hour: "4", min: "15", twelveHr: "pm" },
+      location: "Shop",
+      instrument: "piano",
+      teacher: "Emily White",
+      followUp: [],
+    },
+  },
+  {
+    nextContactDate: addDays(1),
+    leadSource: "Walk-In",
+    student: {
+      firstName: "James",
+      lastName: "Smith",
+      instrument: "Violin",
+      groupClass: "",
+      age: 10,
+    },
+    guardian: {
+      firstName: "Karen",
+      lastName: "Smith",
+    },
+    contact: { phone: "0411123456", email: "karen.smith@email.com" },
+    followUp: [],
+    trialLesson: {
+      date: "",
+      time: { hour: "", min: "", twelveHr: "" },
+      location: "",
+      instrument: "",
+      teacher: "",
+      followUp: [],
+    },
+  },
+  {
+    nextContactDate: addDays(3),
+    leadSource: "Referral",
+    student: {
+      firstName: "Liam",
+      lastName: "Jones",
+      instrument: "Bass",
+      groupClass: "Intermediate",
+      age: 20,
+    },
+    guardian: { firstName: "", lastName: "" },
+    contact: { phone: "0421123456", email: "liam.jones@email.com" },
+    followUp: [
+      {
+        admin: "DE",
+        method: { email: true },
+        notes: "Sent class schedule.",
+      },
+    ],
+    trialLesson: {
+      date: addDays(6),
+      time: { hour: "1", min: "00", twelveHr: "pm" },
+      location: "Main studio",
+      instrument: "bass",
+      teacher: "Chris Turner",
+      followUp: [],
+    },
+  },
+  {
+    nextContactDate: addDays(2),
+    leadSource: "Instagram",
+    student: {
+      firstName: "Mia",
+      lastName: "Brown",
+      instrument: "Flute",
+      groupClass: "",
+      age: 15,
+    },
+    guardian: {
+      firstName: "Sarah",
+      lastName: "Brown",
+    },
+    contact: { phone: "0433222111", email: "sarah.brown@email.com" },
+    followUp: [],
+    trialLesson: {
+      date: addDays(4),
+      time: { hour: "5", min: "00", twelveHr: "pm" },
+      location: "Shop",
+      instrument: "flute",
+      teacher: "Amy Grant",
+      followUp: [],
+    },
+  },
+  {
+    nextContactDate: addDays(4),
+    leadSource: "Google Ads",
+    student: {
+      firstName: "Emma",
+      lastName: "Wilson",
+      instrument: "Saxophone",
+      groupClass: "Beginner",
+      age: 13,
+    },
+    guardian: {
+      firstName: "Mike",
+      lastName: "Wilson",
+    },
+    contact: { phone: "0411222333", email: "emma.wilson@email.com" },
+    followUp: [],
+    trialLesson: {
+      date: addDays(8),
+      time: { hour: "6", min: "00", twelveHr: "pm" },
+      location: "Main studio",
+      instrument: "saxophone",
+      teacher: "David Green",
+      followUp: [],
+    },
+  },
+  {
+    nextContactDate: addDays(1),
+    leadSource: "Email",
+    notes: "Inquired about beginner guitar classes.",
+    student: {
+      firstName: "Tom",
+      lastName: "Walker",
+      instrument: "Guitar",
+      groupClass: "Beginner",
+      age: 19,
+    },
+    guardian: { firstName: "", lastName: "" },
+    contact: { phone: "0422123456", email: "tom.walker@email.com" },
+    followUp: [
+      {
+        admin: "EF",
+        method: { voicemail: true },
+        notes: "Followed up with voicemail.",
+      },
+    ],
+    trialLesson: {
+      date: addDays(5),
+      time: { hour: "2", min: "30", twelveHr: "pm" },
+      location: "Shop",
+      instrument: "guitar",
+      teacher: "Alex Mason",
+      followUp: [],
+    },
+  },
+  {
+    nextContactDate: addDays(7),
+    leadSource: "School Program",
+    student: {
+      firstName: "Sophia",
+      lastName: "Harris",
+      instrument: "Trumpet",
+      groupClass: "Intermediate",
+      age: 16,
+    },
+    guardian: {
+      firstName: "Laura",
+      lastName: "Harris",
+    },
+    contact: { phone: "0433123456", email: "sophia.harris@email.com" },
+    followUp: [],
+    trialLesson: {
+      date: addDays(10),
+      time: { hour: "4", min: "45", twelveHr: "pm" },
+      location: "Main studio",
+      instrument: "trumpet",
+      teacher: "John Baker",
+      followUp: [],
+    },
+  },
+  {
+    nextContactDate: addDays(3),
+    leadSource: "Google Ads",
+    student: {
+      firstName: "Oliver",
+      lastName: "Martinez",
+      instrument: "Violin",
+      groupClass: "",
+      age: 11,
+    },
+    guardian: {
+      firstName: "Anna",
+      lastName: "Martinez",
+    },
+    contact: { phone: "0414321123", email: "anna.martinez@email.com" },
+    followUp: [],
+    trialLesson: {
+      date: "",
+      time: { hour: "", min: "", twelveHr: "" },
+      location: "",
+      instrument: "",
+      teacher: "",
+      followUp: [],
+    },
+  },
 ];
+
 
 export default leads;
