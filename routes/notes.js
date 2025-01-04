@@ -23,14 +23,13 @@ router.get("/", async (req, res) => {
   const query = req.query.sort;
   try {
     const sortObj =
-      req.query.sort == "due"
+      query == "due"
         ? { due: 1 }
         : query == "new"
         ? { dateCreated: -1 }
         : query == "old"
         ? { dateCreated: 1 }
         : null;
-    // console.log('params', req.query)
     // const notes = await Note.find();
     const notes = await Note.find().sort(sortObj);
     res.json(notes);

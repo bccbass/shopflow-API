@@ -38,4 +38,7 @@ app.use("/archive", archiveRouter);
 import notesRouter from "./routes/notes.js";
 app.use("/notes", notesRouter);
 
+import utilsRouter from "./routes/utils.js";
+app.use("/utils", utilsRouter);
+
 export default app;

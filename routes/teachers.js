@@ -27,21 +27,11 @@ router.get("/", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-// Find and countDocuments examples. Use param queries to implement?
-router.get("/count", async (req, res) => {
-  try {
-    const teachers = await Teacher.countDocuments({ createdBy: "Big Seller" });
-    res.json(teachers);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+
 router.post("/", async (req, res) => {
   try {
     const teacher = new Teacher({
-      body: req.body.body,
-      createdBy: req.body.createdBy,
-      due: req.body.due,
+      ...req.body
     });
     await teacher.save();
     res.status(201).json(teacher);

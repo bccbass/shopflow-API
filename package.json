@@ -14,7 +14,8 @@
     "seednotes": "node db/seedNotes.js",
     "seedusers": "node db/seedUsers.js",
     "seedteachers": "node db/seedTeachers.js",
-    "seedarchive": "node db/seedArchive.js"
+    "seedarchive": "node db/seedArchive.js",
+    "seedutil": "node db/seedUtil.js"
   },
   "keywords": [],
   "author": "",
