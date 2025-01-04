@@ -18,7 +18,7 @@ router.get("/", async (req, res, next) => {
 		if (!queryObj) {
             res.status(500).json({ message: 'invalid query request' });
 		} else {
-			const resource = await Util.find(queryObj);
+			const resource = await Util.findOne(queryObj);
 			res.json(resource);
 		}
 	} catch (err) {

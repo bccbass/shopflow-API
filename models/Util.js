@@ -15,9 +15,9 @@ const locationSchema = new mongoose.Schema(
 		virtuals: {
 			address: {
 				get() {
-					return `${this.streetAddress} %0D%0A 
-                            ${this.suburb}, ${this.state} %0D%0A 
-                            ${this.phone} %0D%0A 
+					return `${this.streetAddress } 
+                            ${this.suburb}, ${this.state } 
+                            ${this.phone },
                             ${this.description}`;
 				},
 			},

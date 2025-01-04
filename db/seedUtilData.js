@@ -33,15 +33,16 @@ const utils = [
 				suburb: "Caringbah",
 				state: "NSW",
 				phone: "(02) 9524 7925",
-				description: "Adjacent to Caringbah Library. Follow stairs to second floor.",
+				description:
+					"Adjacent to Caringbah Library. Follow stairs to second floor.",
 			},
 		],
 		groupClasses: [
-			"Uke group",
 			"Adult Jam",
 			"Kids Rock Band",
 			"Guitar Group",
 			"Pop Choir",
+			"Uke Group",
 			"Keyboard Group",
 		],
 		phone: "(02) 9524 7925",
