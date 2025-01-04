@@ -47,8 +47,13 @@ router.get("/analytics", async (req, res) => {
 router.get("/due", async (req, res) => {
   const now = Date.now() 
   try {
-    const enquiries = await Lead.countDocuments({bookedTrial: false}).where('nextContactDate').lte(now);
-    const trials = await Lead.countDocuments({ bookedTrial: true }).where('nextContactDate').lte(now);
+    const enquiries = await Lead.countDocuments({bookedTrial: false, enrolled: false}).where('nextContactDate').lte(now);
+    const trials = await Lead.countDocuments({
+			bookedTrial: true,
+			enrolled: false,
+		})
+			.where("nextContactDate")
+			.lte(now);
     const notes = await Note.countDocuments({completed: false}).where('due').lte(now);
     const due = {enquiries, trials, notes};
     res.json(due);
