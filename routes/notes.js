@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
   try {
     const sortObj =
       query == "due"
-        ? { due: 1 }
+        ? { completed: 1, due: 1}
         : query == "new"
         ? { dateCreated: -1 }
         : query == "old"
@@ -75,6 +75,9 @@ router
     }
     if (req.body.due != null) {
       res.note.due = req.body.due;
+    }
+    if (req.body.completed != null) {
+      res.note.completed = req.body.completed;
     }
     try {
       const updatedNote = await res.note.save();

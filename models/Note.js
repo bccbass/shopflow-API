@@ -11,7 +11,8 @@ const NoteSchema = new mongoose.Schema({
 	title: { type: String, trim: true },
 	body: { type: String },
 	createdBy: String,
-	due: { type: Date },
+	due: { type: Date, default: Date.now },
+	completed: {type: Boolean, default: false}
 },
 {
     virtuals: {

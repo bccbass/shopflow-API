@@ -49,7 +49,7 @@ router.get("/due", async (req, res) => {
   try {
     const enquiries = await Lead.countDocuments({bookedTrial: false}).where('nextContactDate').lte(now);
     const trials = await Lead.countDocuments({ bookedTrial: true }).where('nextContactDate').lte(now);
-    const notes = await Note.countDocuments().where('due').lte(now);
+    const notes = await Note.countDocuments({completed: false}).where('due').lte(now);
     const due = {enquiries, trials, notes};
     res.json(due);
   } catch (err) {
