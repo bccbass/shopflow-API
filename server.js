@@ -35,6 +35,9 @@ app.use("/teachers", teachersRouter);
 import archiveRouter from "./routes/archive.js";
 app.use("/archive", archiveRouter);
 
+import repairsRouter from "./routes/repairs.js";
+app.use("/repairs", repairsRouter);
+
 import notesRouter from "./routes/notes.js";
 app.use("/notes", notesRouter);
 
