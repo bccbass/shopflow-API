@@ -1,6 +1,7 @@
 import express from "express";
 import Lead from "../models/Lead.js";
 import Note from "../models/Note.js";
+import Repair from "../models/Repair.js";
 import Archive from "../models/Archive.js";
 
 const router = express.Router();
@@ -55,7 +56,8 @@ router.get("/due", async (req, res) => {
 			.where("nextContactDate")
 			.lte(now);
     const notes = await Note.countDocuments({completed: false}).where('due').lte(now);
-    const due = {enquiries, trials, notes};
+    const repairs = await Repair.countDocuments({completed: false}).where('due').lte(now);
+    const due = {enquiries, trials, notes, repairs};
     res.json(due);
   } catch (err) {
     res.status(500).json({ message: err.message });
