@@ -48,6 +48,8 @@ router.post("/", async (req, res) => {
       instrument: req.body.instrument,
       status: req.body.status,
       jobDescription: req.body.jobDescription,
+      paid: req.body.paid,
+      amount: req.body.amount,
       notes: req.body.notes,
       completed: req.body.completed,
       createdBy: req.body.createdBy,
@@ -86,6 +88,12 @@ router
     }
     if (req.body.jobDescription != null) {
       res.repair.jobDescription = req.body.jobDescription;
+    }
+    if (req.body.amount != null) {
+      res.repair.amount = req.body.amount;
+    }
+    if (req.body.paid != null) {
+      res.repair.paid = req.body.paid;
     }
     if (req.body.notes != null) {
       res.repair.notes = req.body.notes;

@@ -11,6 +11,8 @@ const repairSchema = new mongoose.Schema(
     instrument: String,
     status: { type: String, default: "In Progress" },
     jobDescription: String,
+    paid: { type: Boolean, default: false },
+    amount: String,
     notes: String,
     completed: { type: Boolean, default: false },
     createdBy: String,
