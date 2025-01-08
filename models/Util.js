@@ -16,9 +16,9 @@ const locationSchema = new mongoose.Schema(
 			address: {
 				get() {
 					return `${this.streetAddress } 
-                            ${this.suburb}, ${this.state } 
-                            ${this.phone },
-                            ${this.description}`;
+				${this.suburb}, ${this.state } 
+				${this.phone },
+				${this.description}`;
 				},
 			},
 		},
