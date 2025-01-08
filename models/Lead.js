@@ -32,6 +32,7 @@ const leadSchema = new mongoose.Schema(
       email: { type: String, lowercase: true, trim: true },
     },
     followUp: [followUpSchema],
+    correspondence: [],
     trialLesson: {
       date: Date,
       time: { hour: String, min: String, twelveHr: String },
