@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 // import Archive from "./Archive.js";
 import followUpSchema from "./FollowUp.js";
-import { addDays, localDate } from "../lib/helperFuncs.js";
+import { addDays, localDate, getDay } from "../lib/helperFuncs.js";
 
 const leadSchema = new mongoose.Schema(
   {
@@ -70,9 +70,16 @@ const leadSchema = new mongoose.Schema(
           );
         },
       },
+      trialDay: {
+        get() {
+          const dayDate = getDay(this.trialLesson.date)
+          return dayDate.split(',')[0]
+        },
+      },
       trialDate: {
         get() {
-          return localDate(this.trialLesson.date);
+          const dayDate = getDay(this.trialLesson.date)
+          return dayDate.split(' ')[2] + ' ' + dayDate.split(' ')[1]
         },
       },
       contactDate: {
