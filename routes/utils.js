@@ -47,7 +47,7 @@ router.get("/", async (req, res, next) => {
 
 router.post("/message", getLead, async (req, res) => {
 	try {
-		if (req.body.to && req.body.from && req.body.subject) {
+		if (req.body.personalizations && req.body.from && req.body.subject) {
            	await sgMail.send(req.body);
 			   res.lead.correspondence = res.lead.correspondence.includes(req.query.emailId) ? res.lead.correspondence : [...res.lead.correspondence, req.query.emailId]
       		   const updated = await res.lead.save();
