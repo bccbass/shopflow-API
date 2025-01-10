@@ -48,7 +48,7 @@ router.get("/analytics", async (req, res) => {
 router.get("/due", async (req, res) => {
   const now = Date.now() 
   try {
-    const enquiries = await Lead.countDocuments({bookedTrial: false, enrolled: false}).where('nextContactDate').lte(now);
+    const enquiries = await Lead.countDocuments({enrolled: false}).where('nextContactDate').lte(now);
     const trials = await Lead.countDocuments({
 			bookedTrial: true,
 			enrolled: false,
@@ -168,3 +168,4 @@ router
   });
 
 export default router;
+export { getLead }
