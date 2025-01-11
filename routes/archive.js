@@ -24,7 +24,7 @@ const getArchive = async (req, res, next) => {
 // Define routes individually
 router.get("/", async (req, res) => {
 	try {
-		const archivedLeads = await Archive.find();
+		const archivedLeads = await Archive.find().sort({dateCreated: -1});
 		res.json(archivedLeads);
 	} catch (err) {
 		res.status(500).json({ message: err.message });

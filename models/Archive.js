@@ -10,8 +10,8 @@ const archiveSchema = new mongoose.Schema({
 	},
 	nextContactDate: Date,
 	leadSource: String,
-	bookedTrial: Boolean,
-	enrolled: Boolean,
+    bookedTrial: { type: Boolean, default: false },
+    enrolled: { type: Boolean, default: false },
 	student: {
 		firstName: String,
 		lastName: String,
@@ -34,6 +34,8 @@ const archiveSchema = new mongoose.Schema({
 		teacher: String,
 		followUp: [followUpSchema],
 	},
+	notes: String
+	
 });
 
 export default mongoose.model("Archive", archiveSchema);

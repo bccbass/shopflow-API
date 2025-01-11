@@ -24,7 +24,7 @@ const getLead = async (req, res, next) => {
 // Define routes individually
 router.get("/", async (req, res) => {
   try {
-    const leads = await Lead.find();
+    const leads = await Lead.find().sort({ enrolled: 1, nextContactDate: 1});
     res.json(leads);
   } catch (err) {
     res.status(500).json({ message: err.message });
