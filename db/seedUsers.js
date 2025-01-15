@@ -6,7 +6,7 @@ const seedUsers = async () => {
   await User.deleteMany();
   console.log("Users deleted from DB");
 
-  await User.insertMany(users);
+  await User.create(users);
   console.log("Users inserted to DB");
 };
 

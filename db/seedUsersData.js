@@ -1,21 +1,19 @@
+import bcrypt from 'bcryptjs'
+
 const users = [
     {
         firstName: 'Juan',
         lastName: 'Gonzales',
-        role: 'admin',
-        email: 'admin@admin.com'
+        manager: true,
+        email: 'manager@email.com',
+        password: 'password'
     },
     {
         firstName: 'Adalberto',
         lastName: 'Rodriguez',
-        role: 'admin',
-        email: 'admin@admin.com'
-    },
-    {
-        firstName: 'Julie',
-        lastName: 'Salazar',
-        role: 'admin',
-        email: 'admin@admin.com'
+        email: 'admin@email.com',
+        password: 'password'
+
     }
 ]
 
