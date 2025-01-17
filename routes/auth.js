@@ -3,8 +3,6 @@ import User from "../models/User.js";
 import { generateToken } from "../lib/authFuncs.js";
 import jwt from "jsonwebtoken";
 
-
-
 const router = express.Router();
 
 // Login
@@ -24,7 +22,7 @@ router.post("/login", async (req, res) => {
     res
       .cookie("token", token, {
         httpOnly: true,
-        sameSite: 'None',
+        sameSite: process.env.NODE_ENV === "production" ? "None" : "Strict",
         secure: process.env.NODE_ENV === "production",
         maxAge: 1 * 24 * 60 * 60 * 1000, // 1 days
       })
@@ -36,8 +34,14 @@ router.post("/login", async (req, res) => {
 
 // Logout
 router.post("/logout", (req, res) => {
-  res.clearCookie("token").json({ message: "Logged out successfully" });
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: true, // Ensure secure cookies
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Strict",
+  });
+  res.status(200).json({ message: 'Logged out successfully' });
 });
+
 
 // Verify user
 router.get("/me", async (req, res) => {
