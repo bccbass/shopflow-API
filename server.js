@@ -1,19 +1,24 @@
 import express from "express";
-import cors from 'cors'
+import cors from "cors";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import { dbConnect } from "./db/connection.js";
+import { protect } from "./lib/authFuncs.js";
+
 
 dotenv.config();
-
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cookieParser());
+// app.use(cors());
 // When ready add client url as config to only allow access form that url:
-// app.use(cors({ origin: process.env.SHOPFLOW_CLIENT_URL }));
+app.use(cors({ 
+  origin: process.env.SHOPFLOW_CLIENT_URL, 
+  credentials: true }));
 
 // Connect to the database
 await dbConnect();
@@ -24,24 +29,27 @@ app.get("/", (req, res) => {
 
 // Connect external routers to app
 import leadsRouter from "./routes/leads.js";
-app.use("/leads", leadsRouter);
+app.use("/leads", protect, leadsRouter);
 
 import usersRouter from "./routes/users.js";
-app.use("/users", usersRouter);
+app.use("/users", protect, usersRouter);
 
 import teachersRouter from "./routes/teachers.js";
-app.use("/teachers", teachersRouter);
+app.use("/teachers", protect, teachersRouter);
 
 import archiveRouter from "./routes/archive.js";
-app.use("/archive", archiveRouter);
+app.use("/archive", protect,  archiveRouter);
 
 import repairsRouter from "./routes/repairs.js";
-app.use("/repairs", repairsRouter);
+app.use("/repairs", protect, repairsRouter);
 
 import notesRouter from "./routes/notes.js";
-app.use("/notes", notesRouter);
+app.use("/notes", protect, notesRouter);
 
 import utilsRouter from "./routes/utils.js";
-app.use("/utils", utilsRouter);
+app.use("/utils", protect, utilsRouter);
+
+import authRouter from "./routes/auth.js";
+app.use("/auth", authRouter);
 
 export default app;

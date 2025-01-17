@@ -3,6 +3,7 @@ import Lead from "../models/Lead.js";
 import Note from "../models/Note.js";
 import Repair from "../models/Repair.js";
 import Archive from "../models/Archive.js";
+import { protect } from "../lib/authFuncs.js";
 
 const router = express.Router();
 
