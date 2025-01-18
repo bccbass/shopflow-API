@@ -8,6 +8,7 @@ const teacherSchema = new mongoose.Schema(
 		phone: { type: String, trim: true },
 		dateCreated: { type: Date, required: true, default: new Date },
 		instruments: [String],
+		active:{ type: Boolean, default: true }
 		//   availability:
 	},
 	{

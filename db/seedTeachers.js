@@ -1,5 +1,5 @@
 import Teacher from "../models/Teacher.js";
-import teachers from "./seedTeachersData.js";
+import teachers from "./teacherDataPrivate.js";
 import { dbConnect, dbClose } from "./connection.js";
 
 const seedTeachers = async () => {

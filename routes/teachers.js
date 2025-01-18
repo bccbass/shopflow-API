@@ -21,7 +21,7 @@ const getTeacher = async (req, res, next) => {
 // Define routes individually
 router.get("/", async (req, res) => {
   try {
-    const teachers = await Teacher.find();
+    const teachers = await Teacher.find().sort({lastName: 1});
     res.json(teachers);
   } catch (err) {
     res.status(500).json({ message: err.message });
