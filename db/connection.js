@@ -7,6 +7,7 @@ dotenv.config();
 const uri = process.env.ATLAS_DB_URL;
 
 const clientOptions = {
+	dbName: 'shopflow',
 	serverApi: { version: "1", strict: true, deprecationErrors: true },
 };
 
