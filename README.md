@@ -25,7 +25,12 @@ ShopFlow API is a backend service for managing leads, users, teachers, notes, re
     ```sh
     git clone https://github.com/yourusername/ShopFlow-api.git
     cd ShopFlow-api
+    ```
+
     Install dependencies:
+
+    ```sh
+    npm install
     ```
 
 2. Set up environment variables by creating a .env file based on .env.sample:
@@ -34,15 +39,15 @@ ShopFlow API is a backend service for managing leads, users, teachers, notes, re
     Update the .env file with your configuration.
     ```
 
-### Environment Variables
+    Environment Variables
 
-```sh
-ATLAS_DB_URL: MongoDB connection string.
-SHOPFLOW_API: ShopFlow API URL.
-SENDGRID_API_KEY: SendGrid API key for sending emails.
-JWT_SECRET: Secret key for JWT authentication.
-PORT: Port number for the server (default: 8080).
-```
+    ```sh
+    ATLAS_DB_URL: MongoDB connection string.
+    SHOPFLOW_API: ShopFlow API URL.
+    SENDGRID_API_KEY: SendGrid API key for sending emails.
+    JWT_SECRET: Secret key for JWT authentication.
+    PORT: Port number for the server (default: 8080).
+    ```
 
 ### Scripts
 
