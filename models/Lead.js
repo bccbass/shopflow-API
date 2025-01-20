@@ -16,7 +16,7 @@ const leadSchema = new mongoose.Schema(
     leadSource: String,
     bookedTrial: { type: Boolean, default: false },
     enrolled: { type: Boolean, default: false },
-    enrollmentFollowUp: {
+    enrolledAdmin: {
       timetable: { type: Boolean, default: false },
       status: { type: Boolean, default: false },
       createInvoice: { type: Boolean, default: false },

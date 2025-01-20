@@ -11,7 +11,7 @@ const router = express.Router();
 const getLead = async (req, res, next) => {
   let lead;
   try {
-    lead = await Lead.findById(req.params.id)
+    lead = await Lead.findById(req.params.id);
     if (lead == null) {
       return res.status(404).json({ message: "Cannot find lead" });
     }
@@ -25,7 +25,7 @@ const getLead = async (req, res, next) => {
 // Define routes individually
 router.get("/", async (req, res) => {
   try {
-    const leads = await Lead.find().sort({ enrolled: 1, nextContactDate: 1});
+    const leads = await Lead.find().sort({ enrolled: 1, nextContactDate: 1 });
     res.json(leads);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -47,18 +47,24 @@ router.get("/analytics", async (req, res) => {
   }
 });
 router.get("/due", async (req, res) => {
-  const now = Date.now() 
+  const now = Date.now();
   try {
-    const enquiries = await Lead.countDocuments({enrolled: false}).where('nextContactDate').lte(now);
+    const enquiries = await Lead.countDocuments({ enrolled: false })
+      .where("nextContactDate")
+      .lte(now);
     const trials = await Lead.countDocuments({
-			bookedTrial: true,
-			enrolled: false,
-		})
-			.where("nextContactDate")
-			.lte(now);
-    const notes = await Note.countDocuments({completed: false}).where('due').lte(now);
-    const repairs = await Repair.countDocuments({completed: false}).where('due').lte(now);
-    const due = {enquiries, trials, notes, repairs};
+      bookedTrial: true,
+      enrolled: false,
+    })
+      .where("nextContactDate")
+      .lte(now);
+    const notes = await Note.countDocuments({ completed: false })
+      .where("due")
+      .lte(now);
+    const repairs = await Repair.countDocuments({ completed: false })
+      .where("due")
+      .lte(now);
+    const due = { enquiries, trials, notes, repairs };
     res.json(due);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -102,55 +108,50 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.patch('/updatetrial/:id', getLead, async (req, res) => {
-try {
-      if (req.body.bookedTrial != null){
-        res.lead.bookedTrial = req.body.bookedTrial
-      }
-      if (req.body.enrolled != null){
-        res.lead.enrolled = req.body.enrolled
-      }
-      if (req.body.trialLesson != null) {
-        res.lead.trialLesson = req.body.trialLesson;
-      }
-      if (req.body.paid != null) {
-        res.lead.trialLesson.paid = req.body.paid;
-      }
-      const updatedLeadTrial = await res.lead.save();
-      res.json(updatedLeadTrial)
-    } catch (err) {
+router.patch("/updatetrial/:id", getLead, async (req, res) => {
+  try {
+    if (req.body.bookedTrial != null) {
+      res.lead.bookedTrial = req.body.bookedTrial;
+    }
+    if (req.body.enrolled != null) {
+      res.lead.enrolled = req.body.enrolled;
+    }
+    if (req.body.trialLesson != null) {
+      res.lead.trialLesson = req.body.trialLesson;
+    }
+    if (req.body.paid != null) {
+      res.lead.trialLesson.paid = req.body.paid;
+    }
+    const updatedLeadTrial = await res.lead.save();
+    res.json(updatedLeadTrial);
+  } catch (err) {
     res.status(500).json({ message: err.message });
   }
-})
-router.patch('/updatefollowup/:id', getLead, async (req, res) => {
-try {
-      if (req.body?.trialLesson?.followUp != null){
-        res.lead.trialLesson.followUp = req.body.trialLesson.followUp
-      }
-      else if (req.body.followUp != null) {
-        res.lead.followUp = req.body.followUp;
-      }
-      else if (req.body.nextContactDate != null){
-        res.lead.nextContactDate = req.body.nextContactDate
-      }
-      else if (req.body.enrollmentFollowUp.timetable != null){
-        res.lead.enrollmentFollowUp.timetable = req.body.enrollmentFollowUp.timetable
-      }
-      else if (req.body.enrollmentFollowUp.status != null){
-        res.lead.enrollmentFollowUp.status = req.body.enrollmentFollowUp.status
-      }
-      else if (req.body.enrollmentFollowUp.createInvoice != null){
-        res.lead.enrollmentFollowUp.createInvoice = req.body.enrollmentFollowUp.createInvoice
-      }
-      else if (req.body.enrollmentFollowUp.sentInvoice != null){
-        res.lead.enrollmentFollowUp.sentInvoice = req.body.enrollmentFollowUp.sentInvoice
-      }
-      const updatedLeadTrial = await res.lead.save();
-      res.json(updatedLeadTrial)
-    } catch (err) {
+});
+router.patch("/updatefollowup/:id", getLead, async (req, res) => {
+  try {
+    if (req.body?.trialLesson?.followUp != null) {
+      res.lead.trialLesson.followUp = req.body.trialLesson.followUp;
+    } else if (req.body.followUp != null) {
+      res.lead.followUp = req.body.followUp;
+    } else if (req.body.nextContactDate != null) {
+      res.lead.nextContactDate = req.body.nextContactDate;
+    } else if (req.body.enrolledAdmin.timetable != null) {
+      res.lead.enrolledAdmin.timetable = req.body.enrolledAdmin.timetable;
+    } else if (req.body.enrolledAdmin.status != null) {
+      res.lead.enrolledAdmin.status = req.body.enrolledAdmin.status;
+    } else if (req.body.enrolledAdmin.createInvoice != null) {
+      res.lead.enrolledAdmin.createInvoice =
+        req.body.enrolledAdmin.createInvoice;
+    } else if (req.body.enrolledAdmin.sentInvoice != null) {
+      res.lead.enrolledAdmin.sentInvoice = req.body.enrolledAdmin.sentInvoice;
+    }
+    const updatedLeadTrial = await res.lead.save();
+    res.json(updatedLeadTrial);
+  } catch (err) {
     res.status(500).json({ message: err.message });
   }
-})
+});
 
 // Define ID Routes using router.route() - this chains all operations for cleaner/concise code
 router
@@ -159,20 +160,21 @@ router
     res.json(res.lead);
   })
   .put(async (req, res) => {
-  
-      try {
-        const id = req.params.id
-        const updatedLeadData = req.body
-        if  (updatedLeadData) {
-        const updatedLead = await Lead.findByIdAndUpdate(id, updatedLeadData, {new: true, runValidators: true})
-        res.status(200).json(updatedLead)
+    try {
+      const id = req.params.id;
+      const updatedLeadData = req.body;
+      if (updatedLeadData) {
+        const updatedLead = await Lead.findByIdAndUpdate(id, updatedLeadData, {
+          new: true,
+          runValidators: true,
+        });
+        res.status(200).json(updatedLead);
+      } else {
+        res.json({ error: "No update data provided" });
       }
-      else {res.json({error: "No update data provided"})}
-
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
-
   })
   .delete(getLead, async (req, res) => {
     try {
@@ -184,4 +186,4 @@ router
   });
 
 export default router;
-export { getLead }
+export { getLead };
