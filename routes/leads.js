@@ -113,6 +113,9 @@ try {
       if (req.body.trialLesson != null) {
         res.lead.trialLesson = req.body.trialLesson;
       }
+      if (req.body.paid != null) {
+        res.lead.trialLesson.paid = req.body.paid;
+      }
       const updatedLeadTrial = await res.lead.save();
       res.json(updatedLeadTrial)
     } catch (err) {
@@ -127,8 +130,20 @@ try {
       else if (req.body.followUp != null) {
         res.lead.followUp = req.body.followUp;
       }
-      if (req.body.nextContactDate != null){
+      else if (req.body.nextContactDate != null){
         res.lead.nextContactDate = req.body.nextContactDate
+      }
+      else if (req.body.enrollmentFollowUp.timetable != null){
+        res.lead.enrollmentFollowUp.timetable = req.body.enrollmentFollowUp.timetable
+      }
+      else if (req.body.enrollmentFollowUp.status != null){
+        res.lead.enrollmentFollowUp.status = req.body.enrollmentFollowUp.status
+      }
+      else if (req.body.enrollmentFollowUp.createInvoice != null){
+        res.lead.enrollmentFollowUp.createInvoice = req.body.enrollmentFollowUp.createInvoice
+      }
+      else if (req.body.enrollmentFollowUp.sentInvoice != null){
+        res.lead.enrollmentFollowUp.sentInvoice = req.body.enrollmentFollowUp.sentInvoice
       }
       const updatedLeadTrial = await res.lead.save();
       res.json(updatedLeadTrial)

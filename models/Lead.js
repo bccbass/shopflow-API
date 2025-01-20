@@ -16,6 +16,12 @@ const leadSchema = new mongoose.Schema(
     leadSource: String,
     bookedTrial: { type: Boolean, default: false },
     enrolled: { type: Boolean, default: false },
+    enrollmentFollowUp: {
+      timetable: { type: Boolean, default: false },
+      status: { type: Boolean, default: false },
+      createInvoice: { type: Boolean, default: false },
+      sentInvoice: { type: Boolean, default: false },
+    },
     student: {
       firstName: { type: String, trim: true },
       lastName: { type: String, trim: true },
@@ -40,6 +46,7 @@ const leadSchema = new mongoose.Schema(
       instrument: String,
       groupClass: String,
       teacher: String,
+      paid: { type: Boolean, default: false },
       followUp: [followUpSchema],
     },
   },
@@ -72,14 +79,14 @@ const leadSchema = new mongoose.Schema(
       },
       trialDay: {
         get() {
-          const dayDate = getDay(this.trialLesson.date).split(',')[0]
-          return dayDate
+          const dayDate = getDay(this.trialLesson.date).split(",")[0];
+          return dayDate;
         },
       },
       trialDate: {
         get() {
-          const dayDate = getDay(this.trialLesson.date)
-          return dayDate.split(' ')[2] + ' ' + dayDate.split(' ')[1]
+          const dayDate = getDay(this.trialLesson.date);
+          return dayDate.split(" ")[2] + " " + dayDate.split(" ")[1];
         },
       },
       contactDate: {
@@ -94,7 +101,9 @@ const leadSchema = new mongoose.Schema(
       },
       trialTime: {
         get() {
-          return this.trialLesson?.time?.hour?.length == 0 ? '' : `${this.trialLesson?.time?.hour}:${this.trialLesson?.time?.min}${this?.trialLesson.time?.twelveHr}`;
+          return this.trialLesson?.time?.hour?.length == 0
+            ? ""
+            : `${this.trialLesson?.time?.hour}:${this.trialLesson?.time?.min}${this?.trialLesson.time?.twelveHr}`;
         },
       },
     },
