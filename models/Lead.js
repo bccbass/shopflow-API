@@ -11,6 +11,7 @@ const leadSchema = new mongoose.Schema(
       default: Date.now,
       immutable: true,
     },
+    createdBy: {type: String, default: ''},
     notes: String,
     nextContactDate: { type: Date, default: addDays(2) },
     leadSource: String,
