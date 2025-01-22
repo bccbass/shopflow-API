@@ -11,7 +11,7 @@ const leadSchema = new mongoose.Schema(
       default: Date.now,
       immutable: true,
     },
-    createdBy: {type: String, default: ''},
+    createdBy: { type: String, default: "" },
     notes: String,
     nextContactDate: { type: Date, default: addDays(2) },
     leadSource: String,
@@ -22,6 +22,12 @@ const leadSchema = new mongoose.Schema(
       status: { type: Boolean, default: false },
       createInvoice: { type: Boolean, default: false },
       sentInvoice: { type: Boolean, default: false },
+    },
+    trialAdmin: {
+      timetable: { type: Boolean, default: false },
+      addToMms: { type: Boolean, default: false },
+      createInvoice: { type: Boolean, default: false },
+      sentConfirmation: { type: Boolean, default: false },
     },
     student: {
       firstName: { type: String, trim: true },
@@ -41,12 +47,16 @@ const leadSchema = new mongoose.Schema(
     followUp: [followUpSchema],
     correspondence: [],
     trialLesson: {
-      date: Date,
-      time: { hour: String, min: String, twelveHr: String },
-      location: String,
-      instrument: String,
-      groupClass: String,
-      teacher: String,
+      date: { type: String, default: "" },
+      time: {
+        hour: { type: String, default: "" },
+        min: { type: String, default: "" },
+        twelveHr: { type: String, default: "" },
+      },
+      location: { type: String, default: "" },
+      instrument: { type: String, default: "" },
+      groupClass: { type: String, default: "" },
+      teacher: { type: String, default: "" },
       paid: { type: Boolean, default: false },
       followUp: [followUpSchema],
     },
@@ -105,6 +115,11 @@ const leadSchema = new mongoose.Schema(
           return this.trialLesson?.time?.hour?.length == 0
             ? ""
             : `${this.trialLesson?.time?.hour}:${this.trialLesson?.time?.min}${this?.trialLesson.time?.twelveHr}`;
+        },
+      },
+      totalContact: {
+        get() {
+          return this.trialLesson?.followUp?.length + this.followUp?.length;
         },
       },
     },

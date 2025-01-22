@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 import users from "./seedUsersData.js";
+// import users from "./userDataPrivate.js";
 import { dbConnect, dbClose } from "./connection.js";
 
 const seedUsers = async () => {

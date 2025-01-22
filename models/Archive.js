@@ -105,6 +105,11 @@ const archiveSchema = new mongoose.Schema(
             : `${this.trialLesson?.time?.hour}:${this.trialLesson?.time?.min}${this?.trialLesson.time?.twelveHr}`;
         },
       },
+      totalContact: {
+        get() {
+          return this.trialLesson?.followUp?.length + this.followUp?.length
+        },
+      },
     },
   }
 );

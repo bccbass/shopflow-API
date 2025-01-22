@@ -11,10 +11,10 @@ const followUpSchema = mongoose.Schema(
     },
     admin: String,
     method: {
-      chat: Boolean,
-      text: Boolean,
-      voicemail: Boolean,
-      email: Boolean,
+      call: { type: Boolean, default: false },
+      chat: { type: Boolean, default: false },
+      voicemail: { type: Boolean, default: false },
+      email: { type: Boolean, default: false }
     },
     notes: String,
   },

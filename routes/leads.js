@@ -122,6 +122,10 @@ router.patch("/updatetrial/:id", getLead, async (req, res) => {
     if (req.body.paid != null) {
       res.lead.trialLesson.paid = req.body.paid;
     }
+    if (req.body.nextContactDate != null) {
+      res.lead.nextContactDate = req.body.nextContactDate;
+    }
+
     const updatedLeadTrial = await res.lead.save();
     res.json(updatedLeadTrial);
   } catch (err) {
@@ -136,15 +140,24 @@ router.patch("/updatefollowup/:id", getLead, async (req, res) => {
       res.lead.followUp = req.body.followUp;
     } else if (req.body.nextContactDate != null) {
       res.lead.nextContactDate = req.body.nextContactDate;
-    } else if (req.body.enrolledAdmin.timetable != null) {
+    } else if (req.body.enrolledAdmin?.timetable != null) {
       res.lead.enrolledAdmin.timetable = req.body.enrolledAdmin.timetable;
-    } else if (req.body.enrolledAdmin.status != null) {
+    } else if (req.body.enrolledAdmin?.status != null) {
       res.lead.enrolledAdmin.status = req.body.enrolledAdmin.status;
-    } else if (req.body.enrolledAdmin.createInvoice != null) {
+    } else if (req.body.enrolledAdmin?.createInvoice != null) {
       res.lead.enrolledAdmin.createInvoice =
         req.body.enrolledAdmin.createInvoice;
-    } else if (req.body.enrolledAdmin.sentInvoice != null) {
+    } else if (req.body.enrolledAdmin?.sentInvoice != null) {
       res.lead.enrolledAdmin.sentInvoice = req.body.enrolledAdmin.sentInvoice;
+    } else if (req.body.trialAdmin.timetable != null) {
+      res.lead.trialAdmin.timetable = req.body.trialAdmin.timetable;
+    } else if (req.body.trialAdmin.addToMms != null) {
+      res.lead.trialAdmin.addToMms = req.body.trialAdmin.addToMms;
+    } else if (req.body.trialAdmin.createInvoice != null) {
+      res.lead.trialAdmin.createInvoice = req.body.trialAdmin.createInvoice;
+    } else if (req.body.trialAdmin.sentConfirmation != null) {
+      res.lead.trialAdmin.sentConfirmation =
+        req.body.trialAdmin.sentConfirmation;
     }
     const updatedLeadTrial = await res.lead.save();
     res.json(updatedLeadTrial);
