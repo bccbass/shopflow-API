@@ -122,6 +122,24 @@ const leadSchema = new mongoose.Schema(
           return this.trialLesson?.followUp?.length + this.followUp?.length;
         },
       },
+      trialAdminProgress: {
+        get() {
+          if (!Object.values(this.trialAdmin).includes(false)) {
+            return "complete";
+          } else if (!Object.values(this.trialAdmin).includes(true)) {
+            return "none";
+          } else return "in-progress";
+        },
+      },
+      enrolledAdminProgress: {
+        get() {
+          if (!Object.values(this.enrolledAdmin).includes(false)) {
+            return "complete";
+          } else if (!Object.values(this.enrolledAdmin).includes(true)) {
+            return "none";
+          } else return "in-progress";
+        },
+      },
     },
   }
 );
