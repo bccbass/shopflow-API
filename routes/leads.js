@@ -136,11 +136,12 @@ router.patch("/updatefollowup/:id", getLead, async (req, res) => {
   try {
     if (req.body?.trialLesson?.followUp != null) {
       res.lead.trialLesson.followUp = req.body.trialLesson.followUp;
-    } else if (req.body.followUp != null) {
+    } else if (req.body?.followUp != null) {
       res.lead.followUp = req.body.followUp;
-    } else if (req.body.nextContactDate != null) {
+    }  if (req.body.nextContactDate != null) {
       res.lead.nextContactDate = req.body.nextContactDate;
-    } else if (req.body.enrolledAdmin?.timetable != null) {
+    } 
+    else if (req.body.enrolledAdmin?.timetable != null) {
       res.lead.enrolledAdmin.timetable = req.body.enrolledAdmin.timetable;
     } else if (req.body.enrolledAdmin?.status != null) {
       res.lead.enrolledAdmin.status = req.body.enrolledAdmin.status;
