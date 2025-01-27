@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import Lead from "../models/Lead.js";
-import leads from "./seedLeadsData.js";
+import {leads} from "./seedLeadsData.js";
 import { dbConnect, dbClose } from "./connection.js";
 
 const seedLeads = async () => {

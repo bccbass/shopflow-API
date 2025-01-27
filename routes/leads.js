@@ -49,22 +49,41 @@ router.get("/analytics", async (req, res) => {
 router.get("/due", async (req, res) => {
   const now = Date.now();
   try {
-    const enquiries = await Lead.countDocuments({ enrolled: false })
-      .where("nextContactDate")
-      .lte(now);
-    const trials = await Lead.countDocuments({
-      bookedTrial: true,
+    const enquiries = await Lead.countDocuments({
       enrolled: false,
+      bookedTrial: false,
     })
       .where("nextContactDate")
       .lte(now);
+
+    const enrolled = await Lead.countDocuments({
+      enrolled: true,
+      $or: [
+        { "enrolledAdmin.timetable": false },
+        { "enrolledAdmin.status": false },
+        { "enrolledAdmin.createInvoice": false },
+        { "enrolledAdmin.sentInvoice": false },
+        { nextContactDate: { $lte: now } },
+      ],
+    });
+    const trials = await Lead.countDocuments({
+      enrolled: false,
+      bookedTrial: true,
+      $or: [
+        { "trialAdmin.timetable": false },
+        { "trialAdmin.addToMms": false },
+        { "trialAdmin.createInvoice": false },
+        { "trialAdmin.sentConfirmation": false },
+        { nextContactDate: { $lte: now } },
+      ],
+    });
     const notes = await Note.countDocuments({ completed: false })
       .where("due")
       .lte(now);
     const repairs = await Repair.countDocuments({ completed: false })
       .where("due")
       .lte(now);
-    const due = { enquiries, trials, notes, repairs };
+    const due = { enquiries, trials, enrolled, notes, repairs };
     res.json(due);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -138,10 +157,10 @@ router.patch("/updatefollowup/:id", getLead, async (req, res) => {
       res.lead.trialLesson.followUp = req.body.trialLesson.followUp;
     } else if (req.body?.followUp != null) {
       res.lead.followUp = req.body.followUp;
-    }  if (req.body.nextContactDate != null) {
+    }
+    if (req.body.nextContactDate != null) {
       res.lead.nextContactDate = req.body.nextContactDate;
-    } 
-    else if (req.body.enrolledAdmin?.timetable != null) {
+    } else if (req.body.enrolledAdmin?.timetable != null) {
       res.lead.enrolledAdmin.timetable = req.body.enrolledAdmin.timetable;
     } else if (req.body.enrolledAdmin?.status != null) {
       res.lead.enrolledAdmin.status = req.body.enrolledAdmin.status;
