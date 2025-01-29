@@ -90,7 +90,7 @@ const leadSchema = new mongoose.Schema(
       },
       trialDay: {
         get() {
-          const dayDate = getDay(this.trialLesson.date).split(",")[0];
+          const dayDate = getDay(this.trialLesson.date).split(" ")[0].replace(",", "");
           return dayDate;
         },
       },

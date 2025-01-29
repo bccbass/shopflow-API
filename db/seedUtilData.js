@@ -17,6 +17,7 @@ const utils = [
 			"clarinet",
 			"theory",
 			"tutoring",
+			"harmonica"
 		],
 		locations: [
 			{
