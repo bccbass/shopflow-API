@@ -105,20 +105,6 @@ router.delete("/archive/:id", getLead, async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    // const lead = new Lead({
-    //   student: req.body.student,
-    //   guardian: req.body.guardian,
-    //   contact: { phone: req.body.contact.phone, email: req.body.contact.email },
-    //   followup: [],
-    //   trialLesson: {
-    //     date: req.body.trialLesson.date,
-    //     time: req.body.trialLesson.time,
-    //     location: req.body.trialLesson.location,
-    //     instrument: req.body.trialLesson.instrument,
-    //     enrolling: req.body.trialLesson.enrolling,
-    //     followup: [],
-    //   },
-    // });
     const lead = new Lead({ ...req.body });
     await lead.save();
     res.status(200).json(lead);
@@ -205,6 +191,19 @@ router
       } else {
         res.json({ error: "No update data provided" });
       }
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  })
+  .patch(getLead, async (req, res) => {
+    try {
+      if (req.body?.notes != null) {
+        res.lead.notes = req.body.notes;
+      } else if (req.body?.nextContactDate != null) {
+        res.lead.nextContactDate = req.body.nextContactDate;
+      } 
+      const updatedLeadTrial = await res.lead.save();
+      res.json(updatedLeadTrial);
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
