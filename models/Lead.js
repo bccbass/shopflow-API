@@ -34,7 +34,7 @@ const leadSchema = new mongoose.Schema(
       lastName: { type: String, trim: true },
       instrument: String,
       groupClass: String,
-      age: Number,
+      age: String,
     },
     guardian: {
       firstName: { type: String, trim: true },

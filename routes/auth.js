@@ -24,7 +24,7 @@ router.post("/login", async (req, res) => {
         httpOnly: true,
         sameSite: process.env.NODE_ENV === "production" ? "None" : "Strict",
         secure: process.env.NODE_ENV === "production",
-        maxAge: 1 * 24 * 60 * 60 * 1000, // 1 days
+        maxAge: 1 * 12 * 60 * 60 * 1000, // 12 hours
       })
       .json({ message: "Logged in successfully" });
   } catch (err) {
