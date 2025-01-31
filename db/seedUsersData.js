@@ -4,7 +4,7 @@ const users = [
     {
         firstName: 'Juan',
         lastName: 'Gonzales',
-        manager: true,
+        fullAccess: true,
         email: 'manager@email.com',
         password: 'password'
     },

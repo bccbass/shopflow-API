@@ -2,6 +2,7 @@ import express from "express";
 import Lead from "../models/Lead.js";
 import Note from "../models/Note.js";
 import Repair from "../models/Repair.js";
+import Order from "../models/Order.js";
 import Archive from "../models/Archive.js";
 import { protect } from "../lib/authFuncs.js";
 
@@ -83,7 +84,10 @@ router.get("/due", async (req, res) => {
     const repairs = await Repair.countDocuments({ completed: false })
       .where("due")
       .lte(now);
-    const due = { enquiries, trials, enrolled, notes, repairs };
+    const orders = await Order.countDocuments({ completed: false })
+      .where("due")
+      .lte(now);
+    const due = { enquiries, trials, enrolled, notes, repairs, orders };
     res.json(due);
   } catch (err) {
     res.status(500).json({ message: err.message });

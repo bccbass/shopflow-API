@@ -43,6 +43,9 @@ app.use("/archive", protect,  archiveRouter);
 import repairsRouter from "./routes/repairs.js";
 app.use("/repairs", protect, repairsRouter);
 
+import ordersRouter from "./routes/orders.js";
+app.use("/orders", protect, ordersRouter);
+
 import notesRouter from "./routes/notes.js";
 app.use("/notes", protect, notesRouter);
 
