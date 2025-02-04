@@ -47,7 +47,7 @@ router.post("/", async (req, res) => {
       phone: req.body.phone,
       item: req.body.item,
       status: req.body.status,
-      orderDescription: req.body.jobDescription,
+      orderDescription: req.body.orderDescription,
       paid: req.body.paid,
       depositAmount: req.body.depositAmount,
       totalAmount: req.body.totalAmount,
