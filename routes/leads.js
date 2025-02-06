@@ -64,7 +64,7 @@ router.get("/due", async (req, res) => {
         { "enrolledAdmin.status": false },
         { "enrolledAdmin.createInvoice": false },
         { "enrolledAdmin.sentInvoice": false },
-        { nextContactDate: { $lte: now } },
+        // { nextContactDate: { $lte: now } },
       ],
     });
     const trials = await Lead.countDocuments({
