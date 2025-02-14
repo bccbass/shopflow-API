@@ -71,6 +71,7 @@ router.get("/due", async (req, res) => {
       enrolled: false,
       bookedTrial: true,
       $or: [
+        // { "trialLesson.paid": false },
         { "trialAdmin.timetable": false },
         { "trialAdmin.addToMms": false },
         { "trialAdmin.createInvoice": false },
