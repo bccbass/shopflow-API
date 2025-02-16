@@ -36,17 +36,7 @@ router.get("/", async (req, res) => {
 // Add in time info (total length from first contact to trial to enrollment)
 // Add in Group class percent
 // Add in Average age/number of adults
-router.get("/analytics", async (req, res) => {
-  try {
-    const total = await Lead.countDocuments();
-    const bookedTrial = await Lead.countDocuments({ bookedTrial: true });
-    const enrolled = await Lead.countDocuments({ enrolled: true });
-    const analytics = { total, bookedTrial, enrolled };
-    res.json(analytics);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+
 router.get("/due", async (req, res) => {
   const now = Date.now();
   try {
@@ -206,7 +196,7 @@ router
         res.lead.notes = req.body.notes;
       } else if (req.body?.nextContactDate != null) {
         res.lead.nextContactDate = req.body.nextContactDate;
-      } 
+      }
       const updatedLeadTrial = await res.lead.save();
       res.json(updatedLeadTrial);
     } catch (err) {
