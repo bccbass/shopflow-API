@@ -52,6 +52,9 @@ app.use("/notes", protect, notesRouter);
 import utilsRouter from "./routes/utils.js";
 app.use("/utils", protect, utilsRouter);
 
+import analyticsRouter from "./routes/analytics.js";
+app.use("/analytics", protect, analyticsRouter);
+
 import authRouter from "./routes/auth.js";
 app.use("/auth", authRouter);
 
