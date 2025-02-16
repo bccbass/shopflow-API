@@ -34,15 +34,11 @@ router.get("/", async (req, res) => {
         adult : !lead.isMinor
       };
     });
-    // const lastYear = getFirstDayOfMonth(12);
-    // const filteredLeads = parsedLeads.filter(
-    //   (lead) => new Date(lead.dateCreated) >= lastYear
-    // );
-    const totalLeads = parsedLeads.length
+
     const noTrialLeads = parsedLeads.filter(lead => lead.status === 'noTrial');
     const trialLeads = parsedLeads.filter(lead => lead.status === 'trial');
     const enrolledLeads = parsedLeads.filter(lead => lead.status === 'enrolled');
-    res.json({noTrialLeads, trialLeads, enrolledLeads, totalLeads});
+    res.json({noTrialLeads, trialLeads, enrolledLeads });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
