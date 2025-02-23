@@ -25,6 +25,7 @@ router.get("/", async (req, res) => {
     const parsedLeads = allLeads.map((lead) => {
       return {
         dateCreated: lead.dateCreated,
+        instrument: lead.instrument,
         status: lead.enrolled
           ? "enrolled"
           : lead.bookedTrial

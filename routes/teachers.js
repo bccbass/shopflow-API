@@ -53,13 +53,16 @@ router
       res.teacher.lastName = req.body.lastName;
     }
     if (req.body.email != null) {
-      res.teacher.email = res.body.email;
+      res.teacher.email = req.body.email;
     }
     if (req.body.phone != null) {
-      res.teacher.phone = res.body.phone;
+      res.teacher.phone = req.body.phone;
+    }
+    if (req.body.active != null) {
+      res.teacher.active = req.body.active;
     }
     if (req.body.instruments != null) {
-      res.teacher.instruments = res.body.instruments;
+      res.teacher.instruments = req.body.instruments;
     }
 
     try {

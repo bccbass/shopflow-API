@@ -5,18 +5,18 @@ const router = express.Router();
 
 //   Middleware to handle retrieving assets by ID from DB
 const getUser = async (req, res, next) => {
-    let user;
-    try {
-      user = await User.findById(req.params.id);
-      if (user == null) {
-        return res.status(404).json({ message: "Cannot find user" });
-      }
-    } catch (err) {
-      res.status(500).json({ message: err.message });
+  let user;
+  try {
+    user = await User.findById(req.params.id);
+    if (user == null) {
+      return res.status(404).json({ message: "Cannot find user" });
     }
-    res.user = user;
-    next();
-  }; 
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+  res.user = user;
+  next();
+};
 
 // Define routes individually
 router.get("/", async (req, res) => {
@@ -28,12 +28,9 @@ router.get("/", async (req, res) => {
   }
 });
 router.post("/", async (req, res) => {
+  console.log(req.body)
   try {
-    const user = new User({
-      body: req.body.body,
-      createdBy: req.body.createdBy,
-      due: req.body.due,
-    });
+    const user = new User({ ...req.body });
     await user.save();
     res.status(201).json(user);
   } catch (err) {
@@ -50,32 +47,43 @@ router
     // } catch (err) {
     //   res.status(500).json({ message: err.message });
     // }
-    res.json(res.user)
+    res.json(res.user);
   })
   .patch(getUser, async (req, res) => {
-     if (req.body.title != null) {
-        res.user.title = req.body.title
-     }
-     if (req.body.body != null) {
-        res.user.body = req.body.body
-     }
-     if (req.body.due != null) {
-        res.user.due = res.body.due
-     }
-     try {
-        const updatedUser = await res.user.save();
-        res.json(updatedUser); 
-     } catch (err) {res.status(500).json({ message: err.message})
+    if (req.body.firstName != null) {
+      res.user.firstName = req.body.firstName;
     }
-})
+
+    if (req.body.lastName != null) {
+      res.user.lastName = req.body.lastName;
+    }
+    if (req.body.email != null) {
+      res.user.email = req.body.email;
+    }
+    if (req.body.fullAccess != null) {
+      res.user.fullAccess = req.body.fullAccess;
+    }
+    if (req.body.active != null) {
+      res.user.active = req.body.active;
+    }
+    if (req.body.password != null) {
+      res.user.password = req.body.password;
+    }
+    try {
+      const updatedUser = await res.user.save();
+      res.json(updatedUser);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  })
   .delete(getUser, async (req, res) => {
     try {
-        await res.user.deleteOne();
-        res.json({ message: `Deleted user ${req.params.id}` });
+      await res.user.deleteOne();
+      res.json({ message: `Deleted user ${req.params.id}` });
     } catch (err) {
-        res.status(500).json({message: err.message})
+      res.status(500).json({ message: err.message });
     }
-  });
-
+  })
+  
 
 export default router;

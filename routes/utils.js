@@ -45,6 +45,24 @@ router.get("/", async (req, res, next) => {
 	}
 });
 
+router.put('/:id', async (req, res) => {
+	try {
+	  const id = req.params.id;
+	  const updatedUtilData = req.body;
+	  if (updatedUtilData) {
+		const updatedUtil = await Util.findByIdAndUpdate(id, updatedUtilData, {
+		  new: true,
+		  runValidators: true,
+		});
+		res.status(200).json(updatedUtil);
+	  } else {
+		res.json({ error: "No update data provided" });
+	  }
+	} catch (err) {
+	  res.status(500).json({ message: err.message });
+	}
+  })
+
 router.post("/message", getLead, async (req, res) => {
 	try {
 		if (req.body.personalizations && req.body.from && req.body.subject) {
